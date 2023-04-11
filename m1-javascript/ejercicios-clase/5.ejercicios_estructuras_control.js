@@ -30,4 +30,4 @@
 
 /*Uso de bucle for anidado
 1. Escribe un bucle for anidado que muestre en consola una tabla de multiplicar del 1 al 10.
-/*
+*/
