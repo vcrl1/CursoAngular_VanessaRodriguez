@@ -14,9 +14,15 @@ console.log(frutas)
 1. Crea un array llamado numeros que contenga los números del 1 al 5.
 2. Utiliza un bucle for para iterar sobre el array e imprimir cada número en consola*/
 let numeros = [1, 2, 3, 4, 5]  //Hay que poner datos dentro del array...
-for (let i = 0; i < numeros.length; i++) {
+for (let i = 0; i < numeros.length; i++) {  //Si queremos aumentar de 2 en 2 -> i+=2
     numeros[i]
     console.log(numeros[i])
+}
+//Sentido contrario
+let numerosA = [1, 2, 3, 4, 5]  
+for (let j = numerosA.length -1; j>=0; j--) {  
+    numerosA[j]
+    console.log("NumerosA: "+numerosA[j])
 }
 
 
@@ -31,6 +37,10 @@ let aumentar = calificaciones.map(function (numero) {
     return numero + 5;
 });
 console.log(aumentar)
+// se hace lo mismo de antes pero con otra forma (ALAN)
+let sumar5= calificaciones=>calificaciones+5;
+console.log("Forma ALAN aumentadas 5 puntos"+ calificaciones.map(sumar5))
+
 let filtrar = calificaciones.filter(function (numero) {
     return numero >= 90
 });
@@ -58,9 +68,8 @@ console.log(persona)
 persona.ocupacion='Admin'
 console.log(persona)
 
-
-for (let property in persona) {
-  console.log(`${persona.property}: ${object[property]}`);
+for (let atributos in persona) {
+  console.log(`${atributos}: ${persona[atributos]}`);
 }
 
 
@@ -69,8 +78,28 @@ for (let property in persona) {
 2. Agrega un nombre que ya esté en el Set y verifica que no se duplique.
 3. Muestra en consola la cantidad de elementos en el Set.
  */
+let nombres=new Set(["Vanessa","Gloria","Sara"])
+nombres.add("Sara") //Al ya estar en el array, no lo incluye.
+nombres.add("Marta")
+console.log(nombres)
+console.log("¿El array contiene Sara? "+nombres.has("Sara"))
+console.log("¿Cuantos datos tiene el array? "+nombres.size)
 
 /*--6 Crear y utilizar un Map
 1. Crea un Map llamado capitales y agrega tres pares de países y sus capitales (por ejemplo,
 España - Madrid, Francia - París, Italia - Roma).
 2. Agrega un nuevo par de país y capital al Map */
+
+let capitales=new Map([['España','Madrid'],['Francia','París'],['Italia','Roma']])
+console.log(capitales)
+capitales.set('Perú','Lima')
+console.log(capitales)
+
+/*EJERCICIO NOMBRES AÑADIR Y QUITAR DATOS*/
+//Añadimos apellido a un nombre.
+let nombres1=["Alberto","Juan","Ana","Sara"]
+nombres1[3]+=" García"
+console.log(nombres1)
+
+let primerNombre=nombres1.shift()
+console.log(nombres1)

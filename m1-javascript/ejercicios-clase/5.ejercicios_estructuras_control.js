@@ -27,9 +27,9 @@ switch (fruta) {
         console.log("Es amarilla")
     case "Manzana":
         console.log("Es roja")
-        break;
     default:
         console.log("Indique una fruta")
+        break;
 }
 
 /*Uso de bucle for

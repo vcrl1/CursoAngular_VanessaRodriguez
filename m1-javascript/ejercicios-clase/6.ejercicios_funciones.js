@@ -68,4 +68,10 @@ function crearMultiplicador(factor) {
     }
 }
 let resultadoCrearMulti=crearMultiplicador(9)
-console.log(resultadoCrearMulti(5));
+console.log("Resultado "+resultadoCrearMulti(5));
+console.log("Resultado como tabla "+resultadoCrearMulti(1));
+console.log("Resultado como tabla "+resultadoCrearMulti(2));
+console.log("Resultado como tabla "+resultadoCrearMulti(3));
+console.log("Resultado como tabla "+resultadoCrearMulti(4));
+
+console.log("Otra forma de hacerlo "+ crearMultiplicador(5)(8));
