@@ -10,4 +10,4 @@ class SmartPhone {
 const movil1 = new SmartPhone("Motorola", 8, 10.2, true)
 console.log(movil1)
 const movil2 = new SmartPhone("Xiaomi", 4, 14.2, true)
-console.log(movil2)
+console.log(movil2) 
