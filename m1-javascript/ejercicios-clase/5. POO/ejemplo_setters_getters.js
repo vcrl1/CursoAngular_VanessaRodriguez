@@ -25,3 +25,4 @@ console.log(persona1.edad) //3 //Una vez ya encapsulado ya saldría la edad asig
 
 //Para que no suceda esto, hay que ENCAPSULAR, hay que pone # delante del atributo, pasa a ser PRIVADO
 // Si ponemos _ es para tener en cuenta de no modificar
+
