@@ -1,3 +1,12 @@
+/* 
+• Añadir una nueva tarea
+• Devolver todas las tareas
+• Devolver todas las tareas filtrando por estado
+• Devolver todas las tareas filtrando por prioridad
+• Actualizar una tarea
+• Eliminar una tarea
+*/
+
 //Paso 1: Crear una clase Activity
 class Activity {
     constructor(id, title, content, status, importance) {
@@ -24,8 +33,8 @@ class ActivityDataBase {
         //Generar el nuevo id que tendrá el Array. Con un bucle for o con la clase Math calcular el id más alto de todos los ids
         let maxId = 0
         for (const currentActivity of this.activities) {
-            if(currentActivity.id > maxId)
-            maxId = currentActivity.id
+            if (currentActivity.id > maxId)
+                maxId = currentActivity.id
         }
         console.log(`Valor id máximo: ${maxId}`)
         maxId++
@@ -33,7 +42,16 @@ class ActivityDataBase {
         this.activities.push(activity)
         return activity
     }
+
+    #generateNextId2() {
+
+        let ids = this.activities.map(activity => activity.id)
+        console.log(ids)
+    }
 }
+
+
+
 
 
 //Paso 3: Crear objetos
@@ -67,5 +85,17 @@ let activity4 = new Activity(
     "Alta",
     new Date("2023-04-18"))
 
-    activityDataBase.addActivity(activity1)
-    activityDataBase.addActivity(activity2)
+activityDataBase.addActivity(activity1)
+console.log("1ra "+ activity1.id)
+
+activity3 = activityDataBase.addActivity(activity2)
+console.log("2da "+activity3.id)
+
+activity2 = activityDataBase.addActivity(activity3)
+console.log("3ra "+activity2.id)
+
+
+
+let ids = [1, 2, 5, 8, 4]
+let maxNumber = Math.max(...ids)
+console.log(maxNumber)
