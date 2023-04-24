@@ -29,3 +29,6 @@ const company1 = new Company(1, "54365462A", "Vanessa SL", 123000, 10000)
 console.log(company1)
 console.log(company1.getFullName())
 console.log(company1.getNetIncome())
+company1.legalName="Otra empresa SL" //Al ser un parámetro público lo puede modificar cualquiera. 
+console.log(company1.getFullName())
+
