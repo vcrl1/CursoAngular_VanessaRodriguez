@@ -67,4 +67,6 @@ for (const products of alimerka.products) {
 //forEach
 
 alimerka.products.forEach(products => products.supermarket=alimerka)
-console.log(alimerka);
+alimerka.products.forEach(products => console.log(products.supermarket))
+
+
