@@ -1,7 +1,8 @@
 import { IEvent } from "./event.model"
 
 export class EventService {
-    events: Array<IEvent> = []
+    private events: Array<IEvent> = []
+    private palabraProhibida: string[] = ["Palabra1", "Palabra2", "Palabra3"]
 
     public findAll(): Array<IEvent> {
         return new Array(...this.events); //Devolver una copia del array events
@@ -13,10 +14,6 @@ export class EventService {
     public findAllByPriority(priority: string): Array<IEvent> {
         return this.events.filter(evento => evento.priority === priority) //filter devuelve un array de eventos 
     }
-
-
-
-
 
     public save(event: IEvent): IEvent {
         if (event.id) {
@@ -45,13 +42,33 @@ export class EventService {
         }
 
         //3.Validacion 3: title no contenga una palabra prohibida
-        let palabraProhibida: string[] = ["Palabra1", "Palabra2", "Palabra3"]
-        for (const word of palabraProhibida) {
+        for (const word of this.palabraProhibida) { //Hemos puesto el array arriba (linea 5)
             if (event.title.includes(word))
                 return false;
         }
 
         return true; //si no se ha cumplido ninguna de las 3 anteriores return true
+    }
+
+    public update(event: IEvent): IEvent {
+        if (!event.id)
+            throw new Error("El id tiene que ser válido")
+        let position = this.events.findIndex(
+            currentEvent => currentEvent.id === event.id
+        )
+        if (position === -1)
+            throw new Error("El id no se encuentra")
+
+        if(this.isValid(event))
+            //Se pone position en vez del número de posición manualmente
+        this.events[position].title=event.title 
+        this.events[position].id=event.id 
+        this.events[position].description=event.description 
+        this.events[position].date=event.date 
+        this.events[position].priority=event.priority 
+
+        //Al poner el punto aparecen las opciones que pueden mostrar. 
+        return event;
     }
 
     private generateNextId(): number {
