@@ -9,3 +9,8 @@ PALABRAS RESERVADAS PARA INTERFACES:
 Asociación one to one.
 * Unidireccional. Solo un lado tiene la asociación
 * Bidireccional. Ambos tienen una asociación. 
+
+
+Todas las clases que implmentan una misma interfaz estñan obligads a implementar los métodos de la interfaz.
+* Interface: contrato, declara las operaciones o acciones(métodos)
+* Clase:implementa los métodos de la interfaz
