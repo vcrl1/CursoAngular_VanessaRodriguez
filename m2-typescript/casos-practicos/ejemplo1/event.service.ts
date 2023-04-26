@@ -28,6 +28,39 @@ export class EventService {
         this.events.push(event)
         return event;
     }
+    public update(event: IEvent): IEvent {
+        if (!event.id)
+            throw new Error("El id tiene que ser válido")
+        let position = this.events.findIndex(
+            currentEvent => currentEvent.id === event.id
+        )
+        if (position === -1)
+            throw new Error("El id no se encuentra")
+
+        if (this.isValid(event))
+            //Se pone position en vez del número de posición manualmente
+            this.events[position].title = event.title
+        this.events[position].id = event.id
+        this.events[position].description = event.description
+        this.events[position].date = event.date
+        this.events[position].priority = event.priority
+
+        //Al poner el punto aparecen las opciones que pueden mostrar. 
+        return event;
+    }
+
+    public deleteById(event: IEvent): boolean {
+        //Comprobar si se encuentra el id
+        let position = this.events.findIndex(
+            currentEvent => currentEvent.id === event.id
+        )
+        if (position === -1)
+            throw new Error("El id no se encuentra")
+
+        //Si length=0 no se ha borrado nada (false),length=1 se ha borrado un objeto (true), length>1 se ha borrado más de un objeto (false)
+        return this.events.splice(position, 1).length === 1; //El 1 es el numero de posiciones que quieres eliminar desde la posición en la que estás
+    }
+
     private isValid(event: IEvent): boolean {
         //1.Validacion 1: title tenga longitud entre 10 y 50
         if (event.title.length < 10 || event.title.length > 50)
@@ -48,27 +81,6 @@ export class EventService {
         }
 
         return true; //si no se ha cumplido ninguna de las 3 anteriores return true
-    }
-
-    public update(event: IEvent): IEvent {
-        if (!event.id)
-            throw new Error("El id tiene que ser válido")
-        let position = this.events.findIndex(
-            currentEvent => currentEvent.id === event.id
-        )
-        if (position === -1)
-            throw new Error("El id no se encuentra")
-
-        if(this.isValid(event))
-            //Se pone position en vez del número de posición manualmente
-        this.events[position].title=event.title 
-        this.events[position].id=event.id 
-        this.events[position].description=event.description 
-        this.events[position].date=event.date 
-        this.events[position].priority=event.priority 
-
-        //Al poner el punto aparecen las opciones que pueden mostrar. 
-        return event;
     }
 
     private generateNextId(): number {
