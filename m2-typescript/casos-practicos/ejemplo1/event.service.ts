@@ -16,7 +16,7 @@ export class EventService {
     }
 
     public save(event: IEvent): IEvent {
-        if (event.id) {
+        if (event.id!==-1) {
             throw new Error("Para guardar nuevo evento no se añade id");
         }
         //Método para comprobar si existe otro evento con el mismo título, en ese caso lanzar un error
