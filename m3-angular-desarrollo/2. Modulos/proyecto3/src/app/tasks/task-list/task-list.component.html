@@ -1,0 +1,18 @@
+<h2>Listado de tareas</h2>
+
+<!-- Simple table with header -->
+<table>
+
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Hours</th>
+    </tr>
+
+    <tr *ngFor="let task of tasks">
+      <td>{{task.id}}</td>
+      <td>{{task.title}}</td>
+      <td>{{task.hours}}</td>
+    </tr>
+
+  </table>
