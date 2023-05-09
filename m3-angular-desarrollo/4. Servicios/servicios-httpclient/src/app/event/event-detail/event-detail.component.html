@@ -1,1 +1,9 @@
-<p>event-detail works!</p>
+<h2>Detalle de un evento</h2>
+<div *ngIf="event">
+    <p>Id: {{event.id}}</p>
+    <p>User ID: {{event.userId}}</p>
+    <p>Title: {{event.title}}</p>
+    <p>Completado?: {{event.completed}}</p>
+
+
+</div>
