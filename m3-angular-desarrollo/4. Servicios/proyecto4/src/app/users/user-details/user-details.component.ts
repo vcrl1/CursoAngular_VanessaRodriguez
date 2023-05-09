@@ -9,20 +9,32 @@ import { IUser } from './user.model';
 })
 
 export class UserDetailsComponent {
-  userEmail: string = "";
+  //datos
   users: IUser[] = []
+  user: IUser | undefined
+  searched: boolean = false
 
-  constructor(private UserService: UserService) {
-    this.users = this.UserService.findAll();
-  }
+  //inputs (ngModel)
+  userEmail: string = "";
+  searchEmail: string = "";
+
+  constructor(private userService: UserService) {}
+  
 
   save() {
     let user: IUser = {
       fullName: this.userEmail.split('@')[0],
       email: this.userEmail
     }
-    this.UserService.save(user)
+    this.userService.save(user)
     this.userEmail = "";
+    this.users = this.userService.findAll();
+  }
+  findByEmail():void{
+    this.user=this.userService.findByEmail(this.searchEmail)
+    this.searchEmail=""
+    this.searched=true
+
   }
 
 }

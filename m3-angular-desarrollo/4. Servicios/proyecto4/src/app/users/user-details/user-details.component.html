@@ -1,6 +1,18 @@
-<p>user-details works!</p>
+<h3>Crear usuario</h3>
+
 <ul>
-    <li   *ngFor=" let user of users">{{user.email}}    </li>
+    <li *ngFor=" let user of users">{{user.fullName}} </li>
 </ul>
-<input type="text" [ngModel]="userEmail"/>
+<input type="email" [(ngModel)]="userEmail" />
 <button (click)="save()">Guardar usuario</button>
+
+<div>
+
+    <h3>Buscar usuario</h3>
+    <input type="email" [(ngModel)]="searchEmail" />
+    <button (click)="findByEmail()">Buscar usuario</button>
+
+</div>
+
+<p *ngIf="user">{{user.fullName}}-{{user.email}}</p>
+<p *ngIf="!user && searched">User not found</p>
