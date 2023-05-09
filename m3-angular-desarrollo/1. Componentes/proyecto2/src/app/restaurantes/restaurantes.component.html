@@ -1,0 +1,10 @@
+
+<h2>Restaurantes</h2>
+<div *ngIf="restaurante1.abierto">
+    <p>Nombre: {{restaurante1.nombre}}</p>
+    <p>Calle: {{restaurante1.calle}}</p>
+</div>
+
+<div *ngIf="!restaurante1.abierto">
+    <p>No hay restaurantes abiertos</p>
+</div>

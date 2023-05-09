@@ -1,0 +1,6 @@
+<p>user-details works!</p>
+<ul>
+    <li   *ngFor=" let user of users">{{user.email}}    </li>
+</ul>
+<input type="text" [ngModel]="userEmail"/>
+<button (click)="save()">Guardar usuario</button>

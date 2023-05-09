@@ -1,1 +1,11 @@
 <p>componente1 works!</p>
+<h3>Ejemplo producto</h3>
+<p>{{mensaje}}</p>
+<p>{{precio}}</p>
+
+<h3>Ejemplo de Objeto producto</h3>
+
+<p>ID: {{product1.id}}</p>
+<p>NOMBRE: {{product1.title}}</p>
+<p [ngClass]="product1.price>=100? 'red':'green'"> Precio{{product1.price}}&euro;</p>
+<p [ngClass]="checkPrice()"> Precio{{product1.price}}&euro;</p>

@@ -1,8 +1,10 @@
 
 <h2>Detalle de tarea</h2>
 
-<p>Id: {{task.id}}</p>
+<p [ngStyle]="{'font-size': idSize, 'background-color':idBg }">Id: {{task.id}}</p>
 
 <p>Title: {{task.title}}</p>
 
-<p>Hours: {{task.hours}}</p>
+<p style="color:aquamarine">Hours: {{task.hours}}</p>
+
+<p [ngStyle]="{'color': fontColor}"> Hours:{{task.hours}}</p>
