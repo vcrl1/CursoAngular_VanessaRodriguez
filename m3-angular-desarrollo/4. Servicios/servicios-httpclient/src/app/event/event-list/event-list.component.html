@@ -1,18 +1,18 @@
 <h2>Listado de Eventos ToDos</h2>
 <div>
-<button (click)='findAll()' >Ver todas tareas </button>
+    <button class="btn" (click)='findAll()'>Todas </button>
 </div>
 
 <div>
-<button (click)='findByCompletedFalse()' >Ver tareas finalizadas</button>
+    <button class="btn" (click)='findByCompletedFalse()'>Finalizadas</button>
 </div>
 
 <div>
-<button (click)='findByCompletedTrue()' >Ver tareas completas</button>
+    <button class="btn" (click)='findByCompletedTrue()'>Completas</button>
 </div>
 <ul>
     <li *ngFor="let event of events">
-        <span [ngClass]="event.completed? 'completed':'uncompleted'">
+        <span [ngClass]="event.completed?'completed':'uncompleted'">
             {{event.id}} {{event.userId}} - {{event.title}}- {{event.completed}}
         </span>
     </li>

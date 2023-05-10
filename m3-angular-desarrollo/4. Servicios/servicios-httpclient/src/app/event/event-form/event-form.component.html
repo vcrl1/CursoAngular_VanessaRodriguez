@@ -1,0 +1,4 @@
+<h3>Título evento</h3>
+<input type="text" [(ngModel)]="title" />
+<button (click)="create()"> Crear evento</button>
+<p *ngIf="createdEvent">Se ha creado correctamente el evento: {{createdEvent.id}}</p>
