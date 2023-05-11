@@ -1,6 +1,0 @@
-{
-  "devDependencies": {
-    "@angular/cli": "^15.2.7",
-    "ts-node": "^10.9.1"
-  }
-}

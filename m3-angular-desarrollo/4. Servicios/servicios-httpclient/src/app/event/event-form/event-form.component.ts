@@ -11,9 +11,17 @@ export class EventFormComponent {
   title: string = "";
 
   createdEvent: IEvent | undefined
+  eventToUpdate: IEvent|undefined;
+  titleToUpdate: string="";
 
   constructor(private eventService: EventService) { }
 
+  ngOnInit(): void {
+    this.eventService.findById(1).subscribe(data => {
+      this.eventToUpdate = data;
+      this.titleToUpdate = this.eventToUpdate.title;
+    });
+  }
 
   create(): void {
     let event: IEvent = {
@@ -27,4 +35,13 @@ export class EventFormComponent {
   }
 
 
+update(): void {
+  if (!this.eventToUpdate) return; // si no hay evento a actualizar entonces marchamos
+
+  this.eventToUpdate.title = this.titleToUpdate;
+  this.eventService.update(this.eventToUpdate).subscribe(data => console.log(data));
+  
+
+
+}
 }
