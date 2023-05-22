@@ -1,0 +1,9 @@
+.table-wrapper{
+    text-align: center;
+    display:flex;
+    padding: 20px;
+}
+.mat-table{
+    max-width: 90% !important;
+    width: 100%;
+}

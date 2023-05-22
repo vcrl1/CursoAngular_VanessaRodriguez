@@ -14,3 +14,8 @@ ng generate component user-dir
 ng generate interface user-dir/user --type=model --prefix=I
 
 ng generate component user-detail
+
+ng generate component periodic-elements
+ng generate interface periodicElement --type=model --prefix=I
+
+ng generate component user-table

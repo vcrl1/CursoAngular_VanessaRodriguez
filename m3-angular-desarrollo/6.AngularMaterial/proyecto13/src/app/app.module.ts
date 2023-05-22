@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {MatTableModule} from '@angular/material/table'
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserListComponent } from './user-list/user-list.component';
@@ -11,13 +11,17 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { UserDirComponent } from './user-dir/user-dir.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { PeriodicElementsComponent } from './periodic-elements/periodic-elements.component';
+import { UserTableComponent } from './user-table/user-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     UserDirComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    PeriodicElementsComponent,
+    UserTableComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     MatListModule,
     MatIconModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

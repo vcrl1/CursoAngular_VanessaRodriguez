@@ -2,3 +2,22 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.btn-primary{
+    background-color: #0dcdfd !important;
+}
+
+.btn-secondary{
+    background-color: #3dae5b !important;
+}
+
+.btn-warn{
+    background-color: #fd690d !important;
+}
+
+.btn-error{
+    background-color: #fd0d0d !important;
+}
+
+.btn-third{
+    background-color: aquamarine;
+}
