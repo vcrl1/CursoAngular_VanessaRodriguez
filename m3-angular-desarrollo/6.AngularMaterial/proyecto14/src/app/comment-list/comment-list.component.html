@@ -24,7 +24,8 @@
         <td mat-cell *matCellDef="let comment">{{comment.email}} </td>
     </ng-container>
     
-    <!-- Acciones (botones) //Los botones van dentro de un solo contenedor-->
+<!-- Acciones (botones) //Los botones van dentro de un solo contenedor-->
+    <!-- OPCIÓN 1: botón con método -->
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Acciones</th>
         <td mat-cell *matCellDef="let comment">
@@ -32,15 +33,19 @@
                 <mat-icon>visibility</mat-icon>
                 Ver
             </button>
-            <button mat-fab extended color="accent" class="btn-secondary">
-                <mat-icon>edit</mat-icon>
-                Editar
+
+    <!-- OPCIÓN 2: botón con router link -->
+            <button mat-fab extended color="accent" class="btn-secondary" [routerLink]="['/comments', comment.id]">
+                <mat-icon>visibility</mat-icon>
+                Ver link
             </button>
-            <button mat-fab extended color="warn" class=btn-warn>
+
+
+            <!-- <button mat-fab extended color="warn" class=btn-warn>
                 <mat-icon>delete</mat-icon>
                 Borrar
             </button>
-        </td>
+        </td> -->
     </ng-container>
 
     <!-- Si queremos paginación, ordenar datos, habría que añadir más líneas aquí debajo -->

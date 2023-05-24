@@ -12,7 +12,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table'
+import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { MatTableModule } from '@angular/material/table'
     MatIconModule,
     MatCardModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatGridListModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
