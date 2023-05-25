@@ -1,0 +1,30 @@
+<h1>FORMULARIO </h1>
+
+<form [formGroup]="userForm" (ngSubmit)="save()">
+    <div>
+        <label for="fullName">Nombre:</label>
+        <input type="text" id="fullName" formControlName="fullName">
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email">
+    </div>
+    <div>
+        <label for="age">Edad:</label>
+        <input type="number" id="age" formControlName="age" step="1" min="0">
+    </div>
+    <div>
+        <label for="salary">Salario:</label>
+        <input type="number" id="salary" formControlName="salary" min="0" >
+    </div>
+    <div>
+        <label for="isStudent">¿Eres estudiante?:</label>
+        <input type="checkbox" id="isStudent" formControlName="isStudent"  >
+    </div>
+    <div>
+        <label for="birthday">Fecha cumpleaños:</label>
+        <input type="date" id="birthday" formControlName="birthday"  >
+    </div>
+
+    <button type="submit">Enviar</button>
+</form>
