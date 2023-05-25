@@ -32,10 +32,11 @@
     <div>
         <label for="bookingDate">Fecha reserva:</label>
         <input type="datetime-local" id="bookingDate" formControlName="bookingDate">
+        <!--SIRVE PARA LA RESERVA DE RESTAURANTE type="datetime-local" -->
     </div>
     <div>
         <label for="jobCategory">Departamento/Categoría:</label>
-        <div >
+        <div>
             <label for="desarrollo">Desarrollo</label>
             <input type="radio" id="desarrollo" value="desarrollo" formControlName="jobCategory">
 
@@ -51,14 +52,38 @@
     <div>
         <label for="company">Empresa:</label>
         <select name="company" id="company" formControlName="company">
-            <option value="">Seleccionar empresa</option> 
+            <option value="">Seleccionar empresa</option>
             <option value="ABC">ABC</option>
             <option value="QWE">QWE</option>
             <option value="ASD">ASD</option>
             <option value="TYU">TYU</option>
 
         </select>
- 
+
     </div>
+
+    <div>
+        <label for="hobbies">Hobbies:</label>
+        <select name="hobbies" id="hobbies" formControlName="hobbies" multiple>
+            <option value="">Selecciona</option>
+            <option value="music">Música</option>
+            <option value="sports">Deportes</option>
+            <option value="nature">Naturaleza</option>
+            <option value="travel">Viajar</option>
+        </select>
+        <p><small>*Hacer Ctrl+Click para seleccionar varios.</small></p>
+    </div>
+
+    <div>
+        <label for="bio">Biografía:</label>
+        <textarea name="bio" id="bio" cols="30" rows="5" formControlName="bio"
+            placeholder="Escriba dónde nació y vivió..."></textarea>
+    </div>
+    <div>
+        <label for="avatar">Avatar:</label>
+        <input type="file" formControlName="avatar" (change)="uploadFile($event)">
+        <img src="{{imageSrc}}" *ngIf="imageSrc">
+    </div>
+
     <button type="submit">Enviar</button>
 </form>
