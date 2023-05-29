@@ -1,89 +1,115 @@
-<h1>FORMULARIO </h1>
+<h3>Formulario con validaciones</h3>
 
 <form [formGroup]="userForm" (ngSubmit)="save()">
-    <div>
-        <label for="fullName">Nombre:</label>
-        <input type="text" id="fullName" formControlName="fullName">
-    </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" formControlName="email">
-    </div>
-    <div>
-        <label for="age">Edad:</label>
-        <input type="number" id="age" formControlName="age" step="1" min="0">
-    </div>
-    <div>
-        <label for="salary">Salario:</label>
-        <input type="number" id="salary" formControlName="salary" min="0">
-    </div>
-    <div>
-        <label for="isStudent">¿Eres estudiante?:</label>
-        <input type="checkbox" id="isStudent" formControlName="isStudent">
-    </div>
-    <div>
-        <label for="birthday">Fecha cumpleaños:</label>
-        <input type="date" id="birthday" formControlName="birthday">
-    </div>
-    <div>
-        <label for="entryHour">Hora entrada:</label>
-        <input type="time" id="entryHour" formControlName="entryHour">
-    </div>
-    <div>
-        <label for="bookingDate">Fecha reserva:</label>
-        <input type="datetime-local" id="bookingDate" formControlName="bookingDate">
-        <!--SIRVE PARA LA RESERVA DE RESTAURANTE type="datetime-local" -->
-    </div>
-    <div>
-        <label for="jobCategory">Departamento/Categoría:</label>
-        <div>
-            <label for="desarrollo">Desarrollo</label>
-            <input type="radio" id="desarrollo" value="desarrollo" formControlName="jobCategory">
 
-            <label for="marketing">Marketing</label>
-            <input type="radio" id="marketing" value="marketing" formControlName="jobCategory">
-
-            <label for="blockchain">Blockchain</label>
-            <input type="radio" id="blockchain" value="blockchain" formControlName="jobCategory">
-
-        </div>
-        <input type="string" id="jobCategory" formControlName="jobCategory">
-    </div>
+  <div>
+    <label for="fullName">Nombre completo <span>*</span></label>
+    <input type="text" id="fullName" formControlName="fullName">
     <div>
-        <label for="company">Empresa:</label>
-        <select name="company" id="company" formControlName="company">
-            <option value="">Seleccionar empresa</option>
-            <option value="ABC">ABC</option>
-            <option value="QWE">QWE</option>
-            <option value="ASD">ASD</option>
-            <option value="TYU">TYU</option>
-
-        </select>
-
+      <span *ngIf="userForm.get('fullName')?.getError('required') && userForm.get('fullName')?.touched">
+        Nombre obligatorio.
+      </span>
+      <span *ngIf="userForm.get('fullName')?.getError('whitespaceError') && userForm.get('fullName')?.touched">
+        Nombre no puede tener espacios en blanco
+      </span>
     </div>
+  </div>
 
-    <div>
-        <label for="hobbies">Hobbies:</label>
-        <select name="hobbies" id="hobbies" formControlName="hobbies" multiple>
-            <option value="">Selecciona</option>
-            <option value="music">Música</option>
-            <option value="sports">Deportes</option>
-            <option value="nature">Naturaleza</option>
-            <option value="travel">Viajar</option>
-        </select>
-        <p><small>*Hacer Ctrl+Click para seleccionar varios.</small></p>
+  <div>
+    <label for="email">Correo electrónico <span>*</span></label>
+    <input type="email" id="email" formControlName="email">
+    <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+      <span *ngIf="userForm.get('email')?.getError('required')">
+        Email obligatorio.
+      </span>
+      <span *ngIf="userForm.get('email')?.getError('email')">
+        Formato incorrecto, ejemplo: hola@example.com
+      </span>
     </div>
+  </div>
 
-    <div>
-        <label for="bio">Biografía:</label>
-        <textarea name="bio" id="bio" cols="30" rows="5" formControlName="bio"
-            placeholder="Escriba dónde nació y vivió..."></textarea>
+  <div>
+    <label for="nickName">Nombre de usuario <span>*</span></label>
+    <input type="text" id="nickName" formControlName="nickName">
+    <div *ngIf="userForm.get('nickName')?.invalid && userForm.get('nickName')?.touched">
+      <span *ngIf="userForm.get('nickName')?.getError('required')">
+        Nickname obligatorio.
+      </span>
+      <span *ngIf="userForm.get('nickName')?.getError('minlength') ||
+                      userForm.get('nickName')?.getError('maxlength')">
+        Longitud comprendida entre 6 y 15 caracteres.
+      </span>
     </div>
-    <div>
-        <label for="avatar">Avatar:</label>
-        <input type="file" formControlName="avatar" (change)="uploadFile($event)">
-        <img src="{{imageSrc}}" *ngIf="imageSrc">
-    </div>
+  </div>
 
-    <button type="submit">Enviar</button>
+
+  <div>
+    <label for="salary">Salario <span>*</span></label>
+    <input type="number" step="0" id="salary" formControlName="salary">
+    <div *ngIf="userForm.get('salary')?.invalid && userForm.get('salary')?.touched">
+      <span *ngIf="userForm.get('salary')?.getError('required')">
+        Salario obligatorio.
+      </span>
+      <span *ngIf="userForm.get('salary')?.getError('min') ||
+                      userForm.get('salary')?.getError('max')">
+        Salario comprendido entre 16500 y 100000 €.
+      </span>
+    </div>
+  </div>
+
+  <div>
+    <label for="nif">Documento de identidad (NIF) <span>*</span></label>
+    <input type="text" id="nif" formControlName="nif">
+    <div *ngIf="userForm.get('nif')?.invalid && userForm.get('nif')?.touched">
+      <span *ngIf="userForm.get('nif')?.getError('required')">
+        NIF obligatorio.
+      </span>
+      <span *ngIf="userForm.get('nif')?.getError('pattern')">
+
+        NIF debe tener 8 números y una letra.
+      </span>
+    </div>
+  </div>
+
+  <div>
+    <label for="phone">Nº teléfono </label>
+    <input type="text" id="phone" formControlName="phone">
+    <div *ngIf="userForm.get('phone')?.invalid && userForm.get('phone')?.touched">
+      <span *ngIf="userForm.get('phone')?.getError('required')">
+        NIF obligatorio.
+      </span>
+      <span *ngIf="userForm.get('phone')?.getError('pattern')">
+        Teléfono debe tener 9 dígitos.
+      </span>
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Contraseña: <span>*</span></label>
+    <input type="password" id="password" formControlName="password">
+    <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+      <span *ngIf="userForm.get('password')?.getError('required')">
+        Contraseña obligatoria.
+      </span>
+      <span *ngIf="userForm.get('password')?.getError('pattern')">
+        Debe tener 8 números y 20 caracteres: min, masc, nº o caracter especial %&/().
+      </span>
+    </div>
+  </div>
+  <div>
+    <label for="passwordConfirm">Confirmar contraseña</label>
+    <input type="password" id="passwordConfirm" formControlName="passwordConfirm">
+    <div *ngIf="userForm.get('passwordConfirm')?.invalid && userForm.get('passwordConfirm')?.touched">
+        <span *ngIf="userForm.get('passwordConfirm')?.getError('pattern')">
+          Debe contener entre 8 y 20 caracteres: minúscula, mayúscula, número o carácter especial $ % & / ( )
+        </span>
+    </div>
+    <div *ngIf="userForm.getError('confirmError') && userForm.get('passwordConfirm')?.touched">
+    <span>
+        Las contraseñas no coinciden.
+    </span>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="userForm.invalid">Guardar</button>
 </form>

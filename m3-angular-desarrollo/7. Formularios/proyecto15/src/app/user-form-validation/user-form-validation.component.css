@@ -1,7 +1,3 @@
-input [type="radio"]{
-    margin-right:15px ;
-}
-img{
-    display: block;
-    width: 200px;
+span {
+  color: red;
 }

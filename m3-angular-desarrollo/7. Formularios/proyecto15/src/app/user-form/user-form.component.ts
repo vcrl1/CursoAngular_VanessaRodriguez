@@ -1,60 +1,77 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })
-export class UserFormComponent{ 
+export class UserFormComponent {
 
   userForm = new FormGroup({
     email: new FormControl(''),
     fullName: new FormControl(''),
-    age: new FormControl(''),
-    salary: new FormControl(''),
+    age: new FormControl(18),
+    salary: new FormControl(12600),
     isStudent: new FormControl(false),
-    birthday: new FormControl(''),
-    entryHour: new FormControl(''),
-    bookingDate: new FormControl(''),
+    birthday: new FormControl(null),
+    entryHour: new FormControl(null),
+    bookingDate: new FormControl(null),
     jobCategory: new FormControl(''),
-    company: new FormControl(''),
-    hobbies: new FormControl(''),
+    company: new FormControl(''), // Nota: no poner null ni dejarlo sin string
+    hobbies: new FormControl([]),
     bio: new FormControl(''),
-    avatar: new FormControl(''),
-
+    avatar: new FormControl(null) // archivo
   });
 
-  save() {
-    // Se mandaría a un servicio
-    console.log('Formulario enviado:', this.userForm.get('email')?.value);
-    console.log('Formulario enviado:', this.userForm.get('fullName')?.value);
-    console.log('Formulario enviado:', typeof this.userForm.get('age')?.value);
-    console.log('Formulario enviado:', this.userForm.get('salary')?.value);
-    console.log('Formulario enviado:', this.userForm.get('isStudent')?.value);
-    console.log('Formulario enviado:', this.userForm.get('birthday')?.value);
-    console.log('Formulario enviado:', this.userForm.get('entryHour')?.value);
-    console.log('Formulario enviado:', this.userForm.get('bookingDate')?.value);
-    console.log('Formulario enviado:', this.userForm.get('jobCategory')?.value);
-    console.log('Formulario enviado:', this.userForm.get('company')?.value);
-    console.log('Formulario enviado:', this.userForm.get('hobbies')?.value);
-    console.log('Formulario enviado:', this.userForm.get('bio')?.value);
-    console.log('Formulario enviado:', this.userForm.get('avatar')?.value);
+  save(): void {
+    console.log(this.userForm.get('email')?.value);
+    console.log(this.userForm.get('fullName')?.value);
 
-    this.userForm.reset()
+    console.log(typeof this.userForm.get('age')?.value);
+    console.log(this.userForm.get('age')?.value);
+
+    console.log(this.userForm.get('salary')?.value);
+
+    console.log(this.userForm.get('isStudent')?.value);
+    console.log(typeof this.userForm.get('isStudent')?.value);
+
+    console.log(this.userForm.get('birthday')?.value);
+    console.log(typeof this.userForm.get('birthday')?.value);
+
+    console.log(this.userForm.get('entryHour')?.value);
+
+    console.log(this.userForm.get('bookingDate')?.value);
+
+    console.log(this.userForm.get('jobCategory')?.value);
+
+    console.log(this.userForm.get('company')?.value);
+
+    console.log(this.userForm.get('hobbies')?.value);
+
+    console.log(this.userForm.get('bio')?.value);
+
+    console.log(this.userForm.get('avatar')?.value);
+
+    this.userForm.reset();
   }
 
-  imageSrc: string | undefined
-  uploadFile(event: Event): void {       //Con esto puedo acceder a los archivos.
-    let target = event.target as HTMLInputElement
-    if (target.files !== null && target.files.length > 0) {
+  imageSrc: string | undefined;
+
+  uploadFile(event: Event): void {
+    let target = event.target as HTMLInputElement;
+
+    if (target.files !== null && target.files.length > 0){
       let fileImg = target.files[0];
 
-      //OPCIONAL para mostrar al usuario la imagen 
+      // Opcional: mostrar la imagen al usuario
       let reader = new FileReader();
-      reader.onload = ev => this.imageSrc = reader.result as string //qué hacer cuando se lea la imagen 
-      reader.readAsDataURL(fileImg); //leer la imagen
-
+      reader.onload = ev => this.imageSrc = reader.result as string;// qué hacer cuando se lea la imagen
+      reader.readAsDataURL(fileImg); // leer la imagen
     }
+
   }
+
+
+
 }
