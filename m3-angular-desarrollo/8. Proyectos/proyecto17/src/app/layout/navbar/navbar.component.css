@@ -1,0 +1,13 @@
+.logo{
+    max-width: 300px;
+    margin-top: 10px;
+
+}
+
+.navbar{
+    background-color: rgba(76, 72, 85, 0.749);
+    color: rgb(95, 80, 155);
+}
+.space-example{
+    flex: 1 1 auto;
+}
