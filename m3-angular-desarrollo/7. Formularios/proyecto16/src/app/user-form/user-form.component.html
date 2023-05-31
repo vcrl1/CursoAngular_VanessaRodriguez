@@ -1,1 +1,157 @@
-<p>user-form works!</p>
+<h3>Formulario PROYECTO 16</h3>
+<!--[formGroup] crearlo en app module en imports
+ userForm crearlo en user-form ts en el export -->
+<form [formGroup]="userForm" (ngSubmit)="save()">
+    <mat-form-field>
+        <mat-label>Nombre completo</mat-label>
+        <input matInput type="text" formControlName="fullName">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Biografía</mat-label>
+        <textarea matInput #message maxlength="256" placeholder="Ex. I need help with..." rows="4"
+            formControlName="bio">
+        </textarea>
+        <mat-hint align="start">No incluya datos sensibles.</mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+        <mat-hint>Te enviaremos un correo para la verificación.</mat-hint>
+        <mat-error *ngIf="  userForm.get('email')?.invalid && 
+                            userForm.get('email')?.touched && 
+                            userForm.get('email')?.getError('required')">
+            Email obligatorio.
+        </mat-error>
+        <mat-error *ngIf="  userForm.get('email')?.invalid && 
+                            userForm.get('email')?.touched && 
+                            userForm.get('email')?.getError('email')">
+            Formato email incorrecto.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="userForm.get('password')?.invalid &&
+              userForm.get('password')?.touched &&
+              userForm.get('password')?.getError('required')">
+            Contraseña obligatoria.
+        </mat-error>
+        <mat-error *ngIf="userForm.get('password')?.invalid &&
+              userForm.get('password')?.touched &&
+              userForm.get('password')?.getError('pattern')">
+            Contraseña debe ser entre 8 y 20 caracteres utilizando letras, números.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+        <mat-label>Salario</mat-label>
+        <input matInput type="number" placeholder="0" formControlName="salary">
+        <span matTextSuffix>&euro;&nbsp;</span>
+        <mat-error *ngIf="userForm.get('salary')?.invalid &&
+        userForm.get('salary')?.touched ">
+            El salario tiene que ir comprendido entre 10K y 200K.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Compañía</mat-label>
+        <mat-select formControlName="company">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let company of companies" [value]="company.id">
+                {{company.name}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="  userForm.get('company')?.invalid &&
+                            userForm.get('company')?.touched ">
+            Es obligatorio
+        </mat-error>
+    </mat-form-field>
+
+    <div>
+        <label>Departamento</label>
+        <mat-radio-group formControlName="department">
+            <mat-radio-button value="development">Desarrollo</mat-radio-button>
+            <mat-radio-button value="marketing">Marketing</mat-radio-button>
+            <mat-radio-button value="blockchain">Blockchain</mat-radio-button>
+        </mat-radio-group>
+        <mat-error *ngIf="userForm.get('department')?.invalid &&
+        userForm.get('department')?.touched ">
+            Hay que seleccionar un departamento.
+        </mat-error>
+    </div>
+
+    <mat-form-field>
+        <mat-label>Hobbies</mat-label>
+        <mat-select formControlName="hobbies" multiple>
+            <!-- no sería necesaria la etiqueta  <mat-select-trigger> -->
+            <mat-select-trigger>
+                {{userForm.get('hobbies')?.value?.[0] || ''}}
+                <span *ngIf="(userForm.get('hobbies')?.value?.length || 0) > 1" class="example-additional-selection">
+                    (+{{(userForm.get('hobbies')?.value?.length || 0) - 1}} {{userForm.get('hobbies')?.value?.length ===
+                    2 ? 'other' : 'others'}})
+                </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let hobbie of hobbies" [value]="hobbie">{{hobbie}}</mat-option>
+        </mat-select>
+        <mat-hint>Puedes seleccionar varios</mat-hint>
+    </mat-form-field>
+
+    <table cellspacing="0">
+        <tr>
+            <td><mat-form-field>
+                    <mat-label>Ciudad</mat-label>
+                    <input matInput placeholder="Ex. Madrid" formControlName="city">
+                </mat-form-field></td>
+            <td><mat-form-field>
+                    <mat-label>Código postal</mat-label>
+                    <input matInput #postalCode maxlength="5" placeholder="Ex. 28015" formControlName="postalCode">
+                    <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                </mat-form-field></td>
+        </tr>
+    </table>
+
+    <mat-form-field>
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthday" [min]="minBirthday" [max]="maxBirthday">
+        <!-- o max="{{maxBirthday}}-->
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+    <mat-form-field>
+        <mat-label>Periodo actividad</mat-label>
+        <mat-date-range-input [rangePicker]="pickerRange"> <!-- hay que cambiar el nombre "picker" por otros si tenemos más de un calendario en nuestro formulario.-->
+            <input matStartDate placeholder="Start date" formControlName="jobStartDate">
+            <input matEndDate placeholder="End date" formControlName="jobEndDate">
+        </mat-date-range-input>
+        <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerRange"> 
+            <mat-icon matDatepickerToggleIcon>date_range</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-date-range-picker #pickerRange></mat-date-range-picker>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="isStudent">¿Es estudiante? </mat-checkbox>
+
+    <mat-checkbox formControlName="acceptConditions">He leído y acepto términos y condiciones </mat-checkbox>
+    <mat-error *ngIf="  userForm.get('acceptConditions')?.invalid && 
+    userForm.get('acceptConditions')?.touched ">
+        Es obligatorio aceptar condiciones.
+    </mat-error>
+
+
+
+    <button mat-fab extended type="submit" [disabled]="userForm.invalid">
+        <mat-icon>send</mat-icon>
+        Enviar
+    </button>
+</form>
