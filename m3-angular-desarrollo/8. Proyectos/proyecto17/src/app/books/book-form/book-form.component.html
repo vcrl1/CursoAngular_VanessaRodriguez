@@ -1,1 +1,25 @@
-<p>book-form works!</p>
+<h2>Creación de libro</h2>
+
+
+<form [formGroup]="bookForm" (ngSubmit)="save()">
+
+  <mat-form-field>
+    <mat-label>Título</mat-label>
+    <input matInput type="text" formControlName="title">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Sinopsis</mat-label>
+    <textarea matInput #message maxlength="1000" rows="5"
+        placeholder="Ex. I need help with..." formControlName="sinopsis">
+    </textarea>
+    <mat-hint align="start"><strong>Escribe varios párrafos que describan el libro.</strong> </mat-hint>
+    <mat-hint align="end">{{message.value.length}} / 1000</mat-hint>
+  </mat-form-field>
+
+  <button mat-fab extended type="submit"
+        [disabled]="bookForm.invalid">
+    <mat-icon>send</mat-icon>
+      Enviar
+  </button>
+</form>

@@ -3,34 +3,43 @@ import { CommonModule } from '@angular/common';
 
 import { BooksRoutingModule } from './books-routing.module';
 import { BookListComponent } from './book-list/book-list.component';
+import { BookGalleryComponent } from './book-gallery/book-gallery.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { BookFormComponent } from './book-form/book-form.component';
-import { BookGalleryComponent } from './book-gallery/book-gallery.component';
-import { MatIconModule } from '@angular/material/icon';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { SharedModule } from '../shared/shared.module';
-import{MatGridListModule}from '@angular/material/grid-list'
+import { SharedModule } from "../shared/shared.module";
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
+import { MatSelectModule} from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
-  declarations: [
-    BookListComponent,
-    BookDetailComponent,
-    BookFormComponent,
-    BookGalleryComponent
-  ],
-  imports: [
-    CommonModule,
-    BooksRoutingModule,
-    MatIconModule,
-    HttpClientModule,
-    MatTableModule,
-    MatCardModule,
-    MatButtonModule,
-    SharedModule,
-    MatGridListModule,
-  ]
+    declarations: [
+        BookListComponent,
+        BookGalleryComponent,
+        BookDetailComponent,
+        BookFormComponent
+    ],
+    imports: [
+        CommonModule,
+        BooksRoutingModule,
+        HttpClientModule,
+        MatTableModule,
+        MatIconModule,
+        MatButtonModule,
+        SharedModule,
+        MatGridListModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatInputModule
+    ]
 })
 export class BooksModule { }
+
