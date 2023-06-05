@@ -13,10 +13,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from "../shared/shared.module";
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule} from '@angular/material/input';
-import { MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
         MatFormFieldModule,
         MatSelectModule,
         MatDatepickerModule,
-        MatInputModule
+        MatInputModule,
+        MatNativeDateModule
+    ],
+    providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
     ]
 })
 export class BooksModule { }

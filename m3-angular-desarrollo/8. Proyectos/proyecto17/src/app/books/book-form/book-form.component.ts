@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IBook } from '../models/book.model';
 import { BookService } from '../services/book.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-form',
@@ -14,30 +14,59 @@ export class BookFormComponent {
   bookForm = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
     sinopsis: new FormControl('', [Validators.maxLength(1000)]),
-    // release: new FormControl(null, [Validators.required]),
-    // numPages: new FormControl(0, [Validators.min(30)]),
-    // price: new FormControl(0, [Validators.required, Validators.min(5), Validators.max(500)]),
+    numPages: new FormControl(0, [Validators.min(30)]),
+    //Si quiero que el precio sea opcional el que sea con decimales o no, se pondría una interrogación al final 
+    price: new FormControl(0, [Validators.required, Validators.min(5), Validators.max(500), Validators.pattern('^[0-9]+([.,][0-9]{1,2})?$')]),
+    release: new FormControl(new Date()),
     // photo: new FormControl(''),
     // authorId: new FormControl(null, [Validators.required])
 
   });
 
-  constructor(private bookService: BookService, private router: Router) {}
+
+  constructor(private bookService: BookService, private router: Router, private activatedRoute: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      const idString = params['id']
+      if (!idString) return;
+
+      const id = parseInt(idString, 10);
+      this.bookService.findById(id).subscribe(book => this.loadBookForm(book))
+    })
+  }
+
+
+  loadBookForm(book: IBook): void {
+    this.bookForm.reset({
+      title: book.title,
+      sinopsis: book.sinopsis,
+      numPages: book.numPages,
+      price: book.price,
+      release: book.release
+
+    })
+  }
+
 
   save(): void {
-    let title = this.bookForm.get('title')?.value;
-    let sinopsis = this.bookForm.get('sinopsis')?.value;
+    let title = this.bookForm.get('title')?.value ?? '';
+    let sinopsis = this.bookForm.get('sinopsis')?.value ?? '';
+    let numPages = this.bookForm.get('numPages')?.value ?? 30;
+    let price = this.bookForm.get('price')?.value ?? 5;
+    let release = this.bookForm.get('release')?.value ?? new Date();
+    let photo = "http://dummyimage.com/217x100.png/cc0000/ffffff"
 
     // TODO añadir validación extra de datos, si alguno está mal hacer return y mostrar error y no guardar.
-    
+
     let book: IBook = {
       id: 0,
       title: title ?? '',
       sinopsis: sinopsis ?? '',
-      release: new Date(),
-      numPages: 0,
-      photo: '',
-      price: 0,
+      release: release,
+      numPages: numPages,
+      photo: photo,
+      price: price,
       authorId: 0
     }
 
