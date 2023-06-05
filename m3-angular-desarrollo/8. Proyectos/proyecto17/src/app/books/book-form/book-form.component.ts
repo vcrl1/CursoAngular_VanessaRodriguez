@@ -9,9 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './book-form.component.html',
   styleUrls: ['./book-form.component.css']
 })
+/*
+1. Agregar campo id en FormGroup
+2. En HTML agregar un nuevo matformfield sisable que muestre id pero no lo edite
+3. En save hace la distinción de guardar o editar
+4. En loadForm hay que cargar el id
+*/
 export class BookFormComponent {
 
   bookForm = new FormGroup({
+    id: new FormControl(0),
     title: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
     sinopsis: new FormControl('', [Validators.maxLength(1000)]),
     numPages: new FormControl(0, [Validators.min(30)]),
@@ -39,6 +46,7 @@ export class BookFormComponent {
 
   loadBookForm(book: IBook): void {
     this.bookForm.reset({
+      id: book.id,
       title: book.title,
       sinopsis: book.sinopsis,
       numPages: book.numPages,
@@ -50,6 +58,7 @@ export class BookFormComponent {
 
 
   save(): void {
+    let id = this.bookForm.get('id')?.value ?? 0;
     let title = this.bookForm.get('title')?.value ?? '';
     let sinopsis = this.bookForm.get('sinopsis')?.value ?? '';
     let numPages = this.bookForm.get('numPages')?.value ?? 30;
@@ -60,7 +69,7 @@ export class BookFormComponent {
     // TODO añadir validación extra de datos, si alguno está mal hacer return y mostrar error y no guardar.
 
     let book: IBook = {
-      id: 0,
+      id: id,
       title: title ?? '',
       sinopsis: sinopsis ?? '',
       release: release,
@@ -70,7 +79,11 @@ export class BookFormComponent {
       authorId: 0
     }
 
-    this.bookService.create(book).subscribe(book => this.router.navigate(['/books', book.id]));
-  }
+    if (id === 0) //Crear nuevo libro
+      this.bookService.create(book).subscribe(book => this.router.navigate(['/books', book.id]));
+      else //Editar libro existente
+      this.bookService.update(book).subscribe(book => this.router.navigate(['/books', book.id]));
+
+  } 
 
 }

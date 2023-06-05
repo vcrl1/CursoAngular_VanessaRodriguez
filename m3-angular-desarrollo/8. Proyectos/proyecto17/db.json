@@ -25,10 +25,10 @@
       "title": "Eddie and the Cruisers II: Eddie Lives!",
       "sinopsis": "aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra pede",
       "release": "2023-06-05T10:14:06.774Z",
-      "numPages": 323,
-      "photo": "http://dummyimage.com/184x100.png/ff4444/ffffff",
+      "numPages": 325,
+      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
       "price": 28.62,
-      "authorId": 4
+      "authorId": 0
     },
     {
       "id": 4,
@@ -108,6 +108,16 @@
       "numPages": 40,
       "photo": "",
       "price": 53.6,
+      "authorId": 0
+    },
+    {
+      "id": 12,
+      "title": "Nuevo Libro Vanessa editado",
+      "sinopsis": "Ejemplo de sinopsis",
+      "release": "2023-06-05T11:58:41.268Z",
+      "numPages": 50,
+      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
+      "price": 45,
       "authorId": 0
     }
   ],

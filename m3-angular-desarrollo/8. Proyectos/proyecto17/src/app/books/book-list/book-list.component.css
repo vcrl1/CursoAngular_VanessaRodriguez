@@ -2,3 +2,8 @@ table{
     margin-top:20px ;
     margin-bottom: 20px;
 }
+.btn-primary{
+
+    color: rgb(34, 44, 41);
+    background-color: bisque;
+}
