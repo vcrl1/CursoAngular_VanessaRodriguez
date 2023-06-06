@@ -1,11 +1,22 @@
 <mat-grid-list cols="3" rowHeight="125px" *ngIf="book">
-    
+
     <mat-grid-tile rowspan="2">
         <div>
             <h2>Portada</h2>
             <img src="{{book.photo}}" style="max-width: 100%;">
+            <mat-list>
+                <mat-list-item *ngIf="author">
+                    <img matListItemAvatar src="{{author.photo}}" alt="{{author.fullName}}">
+                    <div matListItemTitle>
+                        <a [routerLink]="['authors', author.id]"> {{author.fullName}}</a>
+                    </div>
+                </mat-list-item>
+            </mat-list>
         </div>
+
     </mat-grid-tile>
+
+
 
     <mat-grid-tile rowspan="2">
         <div>
@@ -13,6 +24,8 @@
             <p> Fecha lanzamiento:{{book.release|date:'dd/MM/YY'}}</p>
             <h3>Sinopsis</h3>
             <p>{{book.sinopsis}}</p>
+            <p>Id Autor: {{book.authorId}}</p>
+
         </div>
     </mat-grid-tile>
 

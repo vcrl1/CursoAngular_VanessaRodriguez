@@ -28,7 +28,7 @@
       "numPages": 325,
       "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
       "price": 28.62,
-      "authorId": 0
+      "authorId": 4
     },
     {
       "id": 4,
@@ -108,7 +108,7 @@
       "numPages": 40,
       "photo": "",
       "price": 53.6,
-      "authorId": 0
+      "authorId": 2
     },
     {
       "id": 12,
@@ -118,7 +118,7 @@
       "numPages": 50,
       "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
       "price": 45,
-      "authorId": 0
+      "authorId": 1
     }
   ],
   "authors": [
