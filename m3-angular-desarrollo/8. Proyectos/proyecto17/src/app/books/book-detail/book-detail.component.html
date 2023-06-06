@@ -1,9 +1,9 @@
-<mat-grid-list cols="3" rowHeight="125px" *ngIf="book">
+<mat-grid-list cols="3" rowHeight="200px" *ngIf="book">
 
     <mat-grid-tile rowspan="2">
         <div>
             <h2>Portada</h2>
-            <img src="{{book.photo}}" style="max-width: 100%;">
+            <img src="{{book.photo}}" style="max-width: 150px;">
             <mat-list>
                 <mat-list-item *ngIf="author">
                     <img matListItemAvatar src="{{author.photo}}" alt="{{author.fullName}}">
