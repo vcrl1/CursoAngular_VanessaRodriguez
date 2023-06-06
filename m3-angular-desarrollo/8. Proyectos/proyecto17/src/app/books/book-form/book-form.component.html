@@ -60,6 +60,15 @@
     </mat-error>
   </mat-form-field>
 
+  <mat-form-field>
+    <mat-label>Categorías</mat-label>
+    <mat-select formControlName="categories" multiple>
+        <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+    </mat-select>
+    <mat-hint>Puedes seleccionar varios</mat-hint>
+</mat-form-field>
+
+
   <button mat-fab extended type="submit" [disabled]="bookForm.invalid">
     <mat-icon>send</mat-icon>
     Enviar

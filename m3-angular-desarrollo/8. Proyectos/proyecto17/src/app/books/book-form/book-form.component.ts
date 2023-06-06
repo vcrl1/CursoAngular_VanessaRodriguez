@@ -31,7 +31,7 @@ export class BookFormComponent {
     release: new FormControl(new Date()),
     // photo: new FormControl(''),
     authorId: new FormControl(0, [Validators.required]),
-    categories: new FormControl()
+    categories: new FormControl<number[]>([])
 
   });
 

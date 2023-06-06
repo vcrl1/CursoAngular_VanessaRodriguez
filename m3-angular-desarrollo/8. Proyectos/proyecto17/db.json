@@ -9,7 +9,10 @@
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 37.36,
       "authorId": 4,
-      "categories":[1,2]
+      "categories": [
+        1,
+        2
+      ]
     },
     {
       "id": 2,
@@ -20,7 +23,10 @@
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 72.31,
       "authorId": 3,
-      "categories":[3,2]
+      "categories": [
+        3,
+        2
+      ]
     },
     {
       "id": 3,
@@ -31,7 +37,10 @@
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 28.62,
       "authorId": 4,
-      "categories":[1,4]
+      "categories": [
+        1,
+        4
+      ]
     },
     {
       "id": 4,
@@ -39,10 +48,14 @@
       "sinopsis": "morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit",
       "release": "2023-04-29T22:00:00.000Z",
       "numPages": 423,
-      "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
+      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
       "price": 50.44,
       "authorId": 3,
-      "categories":[1,2]
+      "categories": [
+        1,
+        2,
+        3
+      ]
     },
     {
       "id": 5,
@@ -53,7 +66,10 @@
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 57.52,
       "authorId": 10,
-      "categories":[2,4]
+      "categories": [
+        2,
+        4
+      ]
     },
     {
       "id": 6,
@@ -64,7 +80,10 @@
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 11.48,
       "authorId": 5,
-      "categories":[1,4]
+      "categories": [
+        1,
+        4
+      ]
     },
     {
       "id": 7,
@@ -75,7 +94,10 @@
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 7.21,
       "authorId": 9,
-      "categories":[1,2]
+      "categories": [
+        1,
+        2
+      ]
     },
     {
       "id": 8,
@@ -86,7 +108,10 @@
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 16.51,
       "authorId": 3,
-      "categories":[2,3]
+      "categories": [
+        2,
+        3
+      ]
     },
     {
       "id": 9,
@@ -97,7 +122,10 @@
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 99.73,
       "authorId": 5,
-      "categories":[3,4]
+      "categories": [
+        3,
+        4
+      ]
     },
     {
       "id": 10,
@@ -108,7 +136,10 @@
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 26.4,
       "authorId": 10,
-      "categories":[1,4]
+      "categories": [
+        1,
+        4
+      ]
     },
     {
       "id": 11,
