@@ -8,7 +8,8 @@
       "numPages": 408,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 37.36,
-      "authorId": 4
+      "authorId": 4,
+      "categories":[1,2]
     },
     {
       "id": 2,
@@ -18,7 +19,8 @@
       "numPages": 498,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 72.31,
-      "authorId": 3
+      "authorId": 3,
+      "categories":[3,2]
     },
     {
       "id": 3,
@@ -28,7 +30,8 @@
       "numPages": 323,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 28.62,
-      "authorId": 4
+      "authorId": 4,
+      "categories":[1,4]
     },
     {
       "id": 4,
@@ -38,7 +41,8 @@
       "numPages": 423,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 50.44,
-      "authorId": 3
+      "authorId": 3,
+      "categories":[1,2]
     },
     {
       "id": 5,
@@ -48,7 +52,8 @@
       "numPages": 442,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 57.52,
-      "authorId": 10
+      "authorId": 10,
+      "categories":[2,4]
     },
     {
       "id": 6,
@@ -58,7 +63,8 @@
       "numPages": 785,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 11.48,
-      "authorId": 5
+      "authorId": 5,
+      "categories":[1,4]
     },
     {
       "id": 7,
@@ -68,7 +74,8 @@
       "numPages": 184,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 7.21,
-      "authorId": 9
+      "authorId": 9,
+      "categories":[1,2]
     },
     {
       "id": 8,
@@ -78,7 +85,8 @@
       "numPages": 606,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 16.51,
-      "authorId": 3
+      "authorId": 3,
+      "categories":[2,3]
     },
     {
       "id": 9,
@@ -88,7 +96,8 @@
       "numPages": 286,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 99.73,
-      "authorId": 5
+      "authorId": 5,
+      "categories":[3,4]
     },
     {
       "id": 10,
@@ -98,7 +107,8 @@
       "numPages": 144,
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 26.4,
-      "authorId": 10
+      "authorId": 10,
+      "categories":[1,4]
     },
     {
       "id": 11,
@@ -227,6 +237,36 @@
       "city": "Buenavista",
       "photo": "https://xsgames.co/randomusers/avatar.php?g=female",
       "id": 12
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Estilos de vida",
+      "minAge": 13,
+      "color": "blue",
+      "photo": "https://picsum.photo/100"
+    },
+    {
+      "id": 2,
+      "name": "Salud",
+      "minAge": 8,
+      "color": "green",
+      "photo": "https://picsum.photo/200"
+    },
+    {
+      "id": 3,
+      "name": "Filosofía",
+      "minAge": 15,
+      "color": "yellow",
+      "photo": "https://picsum.photo/300"
+    },
+    {
+      "id": 4,
+      "name": "Aventura",
+      "minAge": 18,
+      "color": "red",
+      "photo": "https://picsum.photo/400"
     }
   ]
 }

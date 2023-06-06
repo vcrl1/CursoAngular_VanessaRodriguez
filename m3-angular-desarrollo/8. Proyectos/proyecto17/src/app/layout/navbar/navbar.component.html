@@ -11,8 +11,8 @@
 
         <button mat-button [matMenuTriggerFor]="menuBooks">Libros</button>
         <mat-menu #menuBooks="matMenu">
-            <button mat-menu-item>Tabla libros</button>
-            <button mat-menu-item>Galería libros 2</button>
+            <button mat-menu-item [routerLink]="['/books']">Tabla libros</button>
+            <button mat-menu-item>Galería libros</button>
         </mat-menu>
         <button mat-button [matMenuTriggerFor]="menuAuthors">Autores</button>
         <mat-menu #menuAuthors="matMenu">

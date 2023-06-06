@@ -20,12 +20,12 @@ export class AuthorService {
     return this.httpClient.get<IAuthor>(`${this.url}/${id}`);
   }
 
-  create(book :IAuthor): Observable<IAuthor> {
-    return this.httpClient.post<IAuthor>(this.url, book);
+  create(author :IAuthor): Observable<IAuthor> {
+    return this.httpClient.post<IAuthor>(this.url, author);
   }
 
-  update(book: IAuthor): Observable<IAuthor> {
-    return this.httpClient.put<IAuthor>(`${this.url}/${book.id}`, book);
+  update(author: IAuthor): Observable<IAuthor> {
+    return this.httpClient.put<IAuthor>(`${this.url}/${author.id}`, author);
   }
 
   deleteById(id: number): void {
