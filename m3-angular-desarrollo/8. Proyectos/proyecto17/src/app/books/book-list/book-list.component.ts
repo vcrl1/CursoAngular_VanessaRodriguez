@@ -23,13 +23,19 @@ export class BookListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.bookService.findAll().subscribe(data => this.books = data);
-    this.authorService.findAll().subscribe(data => this.authors = data);
-//Esto de aquí sirve para FILTRAR
+
+    //Esto de aquí sirve para FILTRAR
     this.activatedRoute.params.subscribe(params => {
-      const id = parseInt(params['id'], 10);
-      this.bookService.findAllByAuthorId(id).subscribe(data => this.books = data)
+      const idString = params['authorId']
+      if (idString) {
+        const id = parseInt(idString, 10);
+        this.bookService.findAllByAuthorId(id).subscribe(data => this.books = data)
+      } else {
+        this.bookService.findAll().subscribe(data => this.books = data)
+      }
     })
+    this.authorService.findAll().subscribe(data => this.authors = data);
+
   }
 
   deleteBook(book: IBook) {
