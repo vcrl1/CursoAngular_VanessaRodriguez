@@ -31,4 +31,5 @@ export class AuthorService {
   deleteById(id: number): void {
     this.httpClient.delete(`${this.url}/${id}`);
   }
+  
 }

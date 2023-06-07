@@ -8,7 +8,7 @@ Crear libro
 
 <mat-chip-listbox aria-label="Dog selection">
 
-  <a *ngFor="let author of authors" [routerLink]="['/books/author', author.id]">
+  <a *ngFor="let author of authors" [routerLink]="['/books/author', author.id]" >
     <mat-chip color="primary">
       <img matChipAvatar [src]="author.photo" [alt]="author.fullName"/>
       {{author.fullName}}

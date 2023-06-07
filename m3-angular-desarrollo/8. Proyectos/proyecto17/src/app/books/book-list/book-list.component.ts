@@ -3,6 +3,7 @@ import { BookService } from '../services/book.service';
 import { IBook } from '../models/book.model';
 import { AuthorService } from 'src/app/authors/services/author.service';
 import { IAuthor } from 'src/app/authors/models/author.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
@@ -17,15 +18,21 @@ export class BookListComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private authorService: AuthorService
-    ){}
+    private authorService: AuthorService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.bookService.findAll().subscribe(data => this.books = data);
     this.authorService.findAll().subscribe(data => this.authors = data);
+//Esto de aquí sirve para FILTRAR
+    this.activatedRoute.params.subscribe(params => {
+      const id = parseInt(params['id'], 10);
+      this.bookService.findAllByAuthorId(id).subscribe(data => this.books = data)
+    })
   }
 
-  deleteBook(book: IBook){
+  deleteBook(book: IBook) {
 
   }
 
