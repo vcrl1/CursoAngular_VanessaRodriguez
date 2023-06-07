@@ -170,6 +170,20 @@
       "photo": "https://covers.openlibrary.org/b/isbn/9780385533225-L.jpg",
       "price": 50,
       "authorId": 7
+    },
+    {
+      "id": 14,
+      "title": "Vanessa",
+      "sinopsis": "Sinppsis de Vanessa",
+      "release": "2023-06-06T12:13:44.923Z",
+      "numPages": 40,
+      "photo": "http://dummyimage.com/217x100.png/cc0000/ffffff",
+      "price": 15,
+      "authorId": 2,
+      "categories": [
+        1,
+        2
+      ]
     }
   ],
   "authors": [

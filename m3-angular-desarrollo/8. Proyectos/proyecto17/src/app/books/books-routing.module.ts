@@ -27,6 +27,11 @@ const routes: Routes = [
     component: BookFormComponent
   },
   {
+    path: ':author/:id',
+    component: BookListComponent
+  },
+
+  {
     path: '**', redirectTo: '', pathMatch: 'full'
   }
 ];

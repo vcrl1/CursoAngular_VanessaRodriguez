@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IBook } from '../models/book.model';
 import { BookService } from '../services/book.service';
@@ -13,56 +13,48 @@ import { ICategory } from 'src/app/categories/models/category.model';
   templateUrl: './book-form.component.html',
   styleUrls: ['./book-form.component.css']
 })
-/*
-1. Agregar campo id en FormGroup
-2. En HTML agregar un nuevo matformfield sisable que muestre id pero no lo edite
-3. En save hace la distinción de guardar o editar
-4. En loadForm hay que cargar el id
-*/
-export class BookFormComponent {
+export class BookFormComponent implements OnInit {
 
   bookForm = new FormGroup({
-    id: new FormControl(0),
-    title: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
-    sinopsis: new FormControl('', [Validators.maxLength(1000)]),
-    numPages: new FormControl(0, [Validators.min(30)]),
-    //Si quiero que el precio sea opcional el que sea con decimales o no, se pondría una interrogación al final 
-    price: new FormControl(0, [Validators.required, Validators.min(5), Validators.max(500), Validators.pattern('^[0-9]+([.,][0-9]{1,2})?$')]),
-    release: new FormControl(new Date()),
-    // photo: new FormControl(''),
-    authorId: new FormControl(0, [Validators.required]),
+    id: new FormControl<number>(0),
+    title: new FormControl<string>('', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
+    sinopsis: new FormControl<string>('', [Validators.maxLength(1000)]),
+    numPages: new FormControl<number>(0, [Validators.min(30)]),
+    price: new FormControl<number>(0, [
+      Validators.required, Validators.min(5), Validators.max(500), Validators.pattern("^[0-9]+([.,][0-9]{1,2})?$")
+    ]),
+    release: new FormControl<Date>(new Date()),
+    authorId: new FormControl<number>(0, [Validators.required]),
     categories: new FormControl<number[]>([])
-
   });
 
-  authors: IAuthor[] = []
-  categories: ICategory[] = []
-
+  authors: IAuthor[] = [];
+  categories: ICategory[] = [];
 
   constructor(
     private bookService: BookService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private authorService: AuthorService, //Enlazar autores a libros
+    private authorService: AuthorService,
     private categoryService: CategoryService
-  ) { }
+    ) {}
+
   ngOnInit(): void {
+    // /books/3/edit
     this.activatedRoute.params.subscribe(params => {
-      const idString = params['id']
+      const idString = params['id'];
       if (!idString) return;
 
       const id = parseInt(idString, 10);
-      this.bookService.findById(id).subscribe(book => this.loadBookForm(book))
-    })
+      this.bookService.findById(id).subscribe(book => this.loadBookForm(book));
+    });
 
-    //Cargar los autores
-    this.authorService.findAll().subscribe(data => this.authors = data) //authors creado lin36
-    this.categoryService.findAll().subscribe(data => this.categories = data) //categories creado lin37
-
+    this.authorService.findAll().subscribe(data => this.authors = data);
+    this.categoryService.findAll().subscribe(data => this.categories = data);
   }
 
-
   loadBookForm(book: IBook): void {
+
     this.bookForm.reset({
       id: book.id,
       title: book.title,
@@ -71,10 +63,9 @@ export class BookFormComponent {
       price: book.price,
       release: book.release,
       authorId: book.authorId,
-      categories: book.categories as any
-    })
+      categories: book.categories
+    });
   }
-
 
   save(): void {
     let id = this.bookForm.get('id')?.value ?? 0;
@@ -83,15 +74,15 @@ export class BookFormComponent {
     let numPages = this.bookForm.get('numPages')?.value ?? 30;
     let price = this.bookForm.get('price')?.value ?? 5;
     let release = this.bookForm.get('release')?.value ?? new Date();
-    let photo = "http://dummyimage.com/217x100.png/cc0000/ffffff"
+    let photo = "http://dummyimage.com/217x100.png/cc0000/ffffff";
     let authorId = this.bookForm.get('authorId')?.value ?? 0;
-    let categories= this.bookForm.get('categories')?.value ?? [];
-    // TODO añadir validación extra de datos, si alguno está mal hacer return y mostrar error y no guardar.
+    let categories = this.bookForm.get('categories')?.value ?? [];
 
+    // TODO añadir validación extra de datos, si alguno está mal hacer return y mostrar error y no guardar.
     let book: IBook = {
       id: id,
-      title: title ?? '',
-      sinopsis: sinopsis ?? '',
+      title: title,
+      sinopsis: sinopsis,
       release: release,
       numPages: numPages,
       photo: photo,
@@ -100,12 +91,10 @@ export class BookFormComponent {
       categories: categories
     }
 
-    if (id === 0) //Crear nuevo libro
+    if (id === 0) // crear nuevo libro
       this.bookService.create(book).subscribe(book => this.router.navigate(['/books', book.id]));
-    else //Editar libro existente
+    else // editar libro existente
       this.bookService.update(book).subscribe(book => this.router.navigate(['/books', book.id]));
-
   }
 
 }
-

@@ -13,13 +13,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from "../shared/shared.module";
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
+import { MatSelectModule} from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
-import {MatListModule} from '@angular/material/list'
-
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
 @NgModule({
     declarations: [
         BookListComponent,
@@ -28,9 +28,7 @@ import {MatListModule} from '@angular/material/list'
         BookFormComponent
     ],
     imports: [
-        CommonModule,
-        BooksRoutingModule,
-        HttpClientModule,
+        CommonModule, BooksRoutingModule, HttpClientModule,
         MatTableModule,
         MatIconModule,
         MatButtonModule,
@@ -42,11 +40,12 @@ import {MatListModule} from '@angular/material/list'
         MatDatepickerModule,
         MatInputModule,
         MatNativeDateModule,
-        MatListModule
+        MatListModule,
+        MatChipsModule
     ],
     providers: [
-        { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
-    ]
+      { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+    ],
 })
 export class BooksModule { }
 
