@@ -4,6 +4,7 @@ import { IBook } from '../models/book.model';
 import { AuthorService } from 'src/app/authors/services/author.service';
 import { IAuthor } from 'src/app/authors/models/author.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-book-list',
@@ -20,7 +21,7 @@ export class BookListComponent implements OnInit {
     private bookService: BookService,
     private authorService: AuthorService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -45,8 +46,10 @@ export class BookListComponent implements OnInit {
         if (response.status === 200 || response.status === 204) {
           console.log("Se ha borrado correctamente")
           this.ngOnInit() // se encarga de cargar libros
+          this.snackbar.open('Se ha borrado correctamente', 'Cerrar',{duration:3000});
         } else {
           console.log("Se ha producido un error")
+          this.snackbar.open('Se ha producido un error, inténtalo más tarde', 'Cerrar');
         }
       },
       error: error => console.log(error)

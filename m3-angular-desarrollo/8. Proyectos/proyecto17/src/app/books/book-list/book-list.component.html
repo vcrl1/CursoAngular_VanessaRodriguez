@@ -1,23 +1,26 @@
-
 <h2>Listado de libros</h2>
 
 <button mat-raised-button color="primary" routerLink="/books/new">
   <mat-icon>add</mat-icon>
-Crear libro
+  Crear libro
 </button>
 
 <mat-chip-listbox aria-label="Dog selection">
 
-  <a *ngFor="let author of authors" [routerLink]="['/books/author', author.id]" >
+  <a *ngFor="let author of authors" [routerLink]="['/books/author', author.id]">
 
     <mat-chip-option color="primary">
-      <img matChipAvatar [src]="author.photo" [alt]="author.fullName"/>
+      <img matChipAvatar [src]="author.photo" [alt]="author.fullName" />
       {{author.fullName}}
     </mat-chip-option>
 
   </a>
 
 </mat-chip-listbox>
+
+<div *ngIf="books.length>0">
+  Hay {{books.length}} libros en total
+</div>
 
 <table mat-table [dataSource]="books" class="mat-elevation-z8">
 
@@ -73,5 +76,5 @@ Crear libro
 
 </table>
 <div *ngIf="books.length===0" style="text-align: center; min-height: 200px;">
-    No se han encontrado libros
+  No se han encontrado libros
 </div>

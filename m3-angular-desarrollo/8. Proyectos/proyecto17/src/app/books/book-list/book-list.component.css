@@ -18,6 +18,11 @@ a:hover {
     cursor: pointer;
 }
 
+mat-chip-listbox{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .btn-primary {
     color: rgb(34, 44, 41);
     background-color: bisque;
