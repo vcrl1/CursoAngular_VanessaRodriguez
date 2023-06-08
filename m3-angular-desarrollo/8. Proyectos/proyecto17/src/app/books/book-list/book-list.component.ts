@@ -3,7 +3,7 @@ import { BookService } from '../services/book.service';
 import { IBook } from '../models/book.model';
 import { AuthorService } from 'src/app/authors/services/author.service';
 import { IAuthor } from 'src/app/authors/models/author.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
@@ -19,7 +19,8 @@ export class BookListComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private authorService: AuthorService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +40,20 @@ export class BookListComponent implements OnInit {
   }
 
   deleteBook(book: IBook) {
-
+    this.bookService.deleteById(book.id).subscribe({
+      next: response => {
+        if (response.status === 200 || response.status === 204) {
+          console.log("Se ha borrado correctamente")
+          this.ngOnInit() // se encarga de cargar libros
+        } else {
+          console.log("Se ha producido un error")
+        }
+      },
+      error: error => console.log(error)
+    });
   }
 
+
 }
+
+
