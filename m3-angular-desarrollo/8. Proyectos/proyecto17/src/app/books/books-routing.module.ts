@@ -30,6 +30,10 @@ const routes: Routes = [
     path: ':author/:authorId',
     component: BookListComponent
   },
+  {
+    path: ':category/:categoryId',
+    component: BookListComponent
+  },
 
   {
     path: '**', redirectTo: '', pathMatch: 'full'
