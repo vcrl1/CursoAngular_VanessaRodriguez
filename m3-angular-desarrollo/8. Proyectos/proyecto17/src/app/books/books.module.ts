@@ -21,6 +21,7 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatExpansionModule } from '@angular/material/expansion'
 @NgModule({
     declarations: [
         BookListComponent,
@@ -43,7 +44,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
         MatNativeDateModule,
         MatListModule,
         MatChipsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatExpansionModule
     ],
     providers: [
         { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }

@@ -290,28 +290,28 @@
       "name": "Estilos de vida",
       "minAge": 13,
       "color": "blue",
-      "photo": "https://picsum.photo/100"
+      "photo": "https://picsum.photos/100"
     },
     {
       "id": 2,
       "name": "Salud",
       "minAge": 8,
       "color": "green",
-      "photo": "https://picsum.photo/200"
+      "photo": "https://picsum.photos/200"
     },
     {
       "id": 3,
       "name": "Filosofía",
       "minAge": 15,
       "color": "yellow",
-      "photo": "https://picsum.photo/300"
+      "photo": "https://picsum.photos/300"
     },
     {
       "id": 4,
       "name": "Aventura",
       "minAge": 18,
       "color": "red",
-      "photo": "https://picsum.photo/400"
+      "photo": "https://picsum.photos/400"
     }
   ]
 }

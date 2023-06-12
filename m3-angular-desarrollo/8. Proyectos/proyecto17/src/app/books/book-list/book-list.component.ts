@@ -5,6 +5,8 @@ import { AuthorService } from 'src/app/authors/services/author.service';
 import { IAuthor } from 'src/app/authors/models/author.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CategoryService } from 'src/app/categories/services/category.service';
+import { ICategory } from 'src/app/categories/models/category.model';
 
 @Component({
   selector: 'app-book-list',
@@ -16,27 +18,42 @@ export class BookListComponent implements OnInit {
   displayedColumns: string[] = ['title', 'sinopsis', 'release', 'numPages', 'price', 'actions'];
   books: IBook[] = [];
   authors: IAuthor[] = [];
+  categories: ICategory[]=[];
 
   constructor(
     private bookService: BookService,
     private authorService: AuthorService,
+    private categoryService: CategoryService,
     private activatedRoute: ActivatedRoute,
     private snackbar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
+    this.loadBooks()
+  }
 
+  loadBooks() {
     //Esto de aquí sirve para FILTRAR
     this.activatedRoute.params.subscribe(params => {
-      const idString = params['authorId']
-      if (idString) {
-        const id = parseInt(idString, 10);
+      const authorIdStr = params['authorId']
+      const categoryIdStr = params['categoryId']
+
+      if (authorIdStr) {
+        const id = parseInt(authorIdStr, 10);
         this.bookService.findAllByAuthorId(id).subscribe(data => this.books = data)
+      }
+      else if (categoryIdStr) {
+        const id = parseInt(categoryIdStr, 10);
+        this.bookService.findAllByCategoryId(id).subscribe(data => this.books = data)
+
       } else {
         this.bookService.findAll().subscribe(data => this.books = data)
+
       }
     })
     this.authorService.findAll().subscribe(data => this.authors = data);
+    this.categoryService.findAll().subscribe(data => this.categories= data);
+
 
   }
 
@@ -45,8 +62,8 @@ export class BookListComponent implements OnInit {
       next: response => {
         if (response.status === 200 || response.status === 204) {
           console.log("Se ha borrado correctamente")
-          this.ngOnInit() // se encarga de cargar libros
-          this.snackbar.open('Se ha borrado correctamente', 'Cerrar',{duration:3000});
+          this.loadBooks() // se encarga de cargar libros
+          this.snackbar.open('Se ha borrado correctamente', 'Cerrar', { duration: 3000 });
         } else {
           console.log("Se ha producido un error")
           this.snackbar.open('Se ha producido un error, inténtalo más tarde', 'Cerrar');
