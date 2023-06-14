@@ -5,6 +5,16 @@
   Crear libro
 </button>
 
+<div *ngIf="author" class="list-header">
+  <h2>Autor {{author.fullName}}</h2>
+  <img [src]="author.photo" [alt]="author.photo" class="list-header-img">
+</div>
+
+<div *ngIf="category" class="list-header">
+  <h2>Categoría {{category.name}}</h2>
+  <img [src]="category.photo" [alt]="category.photo"  class="list-header-img">
+</div>
+
 <div *ngIf="books.length>0">
   Hay {{books.length}} libros en total
 </div>

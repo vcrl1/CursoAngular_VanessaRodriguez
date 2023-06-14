@@ -18,7 +18,9 @@ export class BookListComponent implements OnInit {
   displayedColumns: string[] = ['title', 'sinopsis', 'release', 'numPages', 'price', 'actions'];
   books: IBook[] = [];
   authors: IAuthor[] = [];
-  categories: ICategory[]=[];
+  categories: ICategory[] = [];
+  author: IAuthor | undefined
+  category: ICategory | undefined
 
   constructor(
     private bookService: BookService,
@@ -41,10 +43,12 @@ export class BookListComponent implements OnInit {
       if (authorIdStr) {
         const id = parseInt(authorIdStr, 10);
         this.bookService.findAllByAuthorId(id).subscribe(data => this.books = data)
-      }
-      else if (categoryIdStr) {
+        this.authorService.findById(id).subscribe(data => this.author = data)
+
+      } else if (categoryIdStr) {
         const id = parseInt(categoryIdStr, 10);
         this.bookService.findAllByCategoryId(id).subscribe(data => this.books = data)
+        this.categoryService.findById(id).subscribe(data => this.category = data)
 
       } else {
         this.bookService.findAll().subscribe(data => this.books = data)
@@ -52,7 +56,7 @@ export class BookListComponent implements OnInit {
       }
     })
     this.authorService.findAll().subscribe(data => this.authors = data);
-    this.categoryService.findAll().subscribe(data => this.categories= data);
+    this.categoryService.findAll().subscribe(data => this.categories = data);
 
 
   }

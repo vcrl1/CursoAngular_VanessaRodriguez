@@ -26,3 +26,15 @@ mat-chip-listbox{
     color: rgb(34, 44, 41);
     background-color: bisque;
 }
+
+h2{
+   text-align: center;
+}
+
+.list-header-img{
+    border-radius: 50%;
+    max-width: 100px;
+}
+.list-header{
+    text-align: center;
+}
