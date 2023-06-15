@@ -42,7 +42,7 @@ export class BookController {
     findById2(@Param('id', ParseIntPipe) id: number): IBook {
         console.log(typeof (id)); //number
         return {
-            id: 2,
+            id: id,
             title: 'Libro 1',
             price: 15
         }
@@ -54,6 +54,12 @@ export class BookController {
     create(@Body() book: IBook): IBook {
         //Guardar en base de datos 
         book.id = 1;
+        //validar el libro 
+            //si es correcto 
+                //this.bookService.sace
+            //Si no es correcto 
+                //throw new NotFoundException('Book not found')
+
         return book;
     }
 
@@ -74,13 +80,13 @@ export class BookController {
         if (false)
             throw new NotFoundException('Book not found')
         //Borrar libro de base de datos
-        try{
-        // this.bookService.deleteById(id)
-        } catch (error){
+        try {
+            // this.bookService.deleteById(id)
+        } catch (error) {
             throw new NotFoundException('No se puede borrar el libro')
 
         }
-        
+
     }
 
 }
