@@ -1,5 +1,8 @@
-export interface IBook{
+
+
+e/xport interface IBook{
     id:number;
     title:string;
     price:number;
+
 }
