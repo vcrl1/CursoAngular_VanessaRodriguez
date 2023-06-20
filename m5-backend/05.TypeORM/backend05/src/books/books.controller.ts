@@ -12,7 +12,7 @@ export class BooksController {
         return this.bookService.findAll();
     }
 
-    @Get(':id')
+    @Get('id/:id')
     findById(id: number): Promise<Book | null> {
         return this.bookService.findById(id);
     }
