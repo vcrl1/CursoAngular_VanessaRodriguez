@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Author } from "src/authors/authors.model";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
@@ -22,9 +23,12 @@ export class Book {
     @Column({ type: 'int' })
     quantity: number;
 
-    @Column({ type: 'boolean', default: false})
+    @Column({ type: 'boolean', default: false })
     published: boolean;
 
-    
+    //Varios libros asociados a un autor. 
+    @ManyToOne(()=>Author)
+    @JoinColumn({name:'id_author'})
+    author: Author;
 
 }
