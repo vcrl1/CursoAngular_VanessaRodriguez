@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { Book } from './books.model';
 
@@ -33,19 +33,23 @@ export class BooksController {
     }
 
     @Get('published')
-    fndAllByPublishedTrue():Promise<Book[]>{
-    return this.bookService.fndAllByPublishedTrue()}
+    fndAllByPublishedTrue(): Promise<Book[]> {
+        return this.bookService.fndAllByPublishedTrue()
+    }
 
     @Get('quantity/:quantity/price/:price')
-    findAllByQuantityAndPrice(  @Param("quantity") quantity: number,
-                                @Param("price") price: number): Promise<Book[]> {
+    findAllByQuantityAndPrice(@Param("quantity") quantity: number,
+        @Param("price") price: number): Promise<Book[]> {
         return this.bookService.findAllByQuantityAndPrice(quantity, price)
     }
 
     @Get('order-by-price-asc')
-    findAllOrderByPriceAsc():Promise<Book[]> {
+    findAllOrderByPriceAsc(): Promise<Book[]> {
         return this.bookService.findAllOrderByPriceAsc()
-
     }
 
+    @Post()
+    async create(@Body() book: Book): Promise<Book> {
+        return await this.bookService.create(book)
+    }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from './books.model';
 import { BaseEntity, Between, ILike, MoreThanOrEqual, Repository } from 'typeorm';
@@ -65,6 +65,24 @@ export class BooksService {
         })
 
     }
+    /* {
+        Hay que ir cambiando ISBN para que no de error
+        Hay que quitar la fecha para que compile y se añada correctamente
+            {"id":0 ,
+            "title": "libro desde Postman",
+            "isbn": 123456006,
+            "price": "145.00",
+            "quantity": 19,
+            "published": false }
+            
+        Hay que crear un try catch porque se queda pillado el backend    
+            */
+    async create(book: Book): Promise<Book> {
+        try {
+          return await  this.bookRepo.save(book)
+        } catch (error) {
+            throw new ConflictException('No se ha podido guardar el libro ')
+        }
 
-    // }
+    }
 }
