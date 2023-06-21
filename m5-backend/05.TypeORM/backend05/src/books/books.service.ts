@@ -53,8 +53,18 @@ export class BooksService {
         })
 
     }
-    
-    // findAllOrderByPriceAsc(price:number): Promise<Book[]> {
-        
+
+    findAllOrderByPriceAsc(): Promise<Book[]> {
+        return this.bookRepo.find({
+
+            //Para bloquear una tabla: lock
+            //Para ordenar: order
+            order: {
+                price: "ASC" //Si cambiamos el ASC por DESC ordena de min a max
+            }
+        })
+
+    }
+
     // }
 }
