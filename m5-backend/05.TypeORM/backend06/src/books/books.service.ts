@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from './books.model';
 import { BaseEntity, Between, ILike, MoreThanOrEqual, Repository } from 'typeorm';
 import { NotFoundError } from 'rxjs';
+import { Author } from 'src/authors/authors.model';
 
 @Injectable()
 export class BooksService {
@@ -19,6 +20,24 @@ export class BooksService {
     findAllWithRelations(): Promise<Book[]> {
         return this.bookRepo.find({ relations: { author: true } })
     }
+
+    //La proyección nos permite obtener los datos que queremos y son necesarios.
+    findAllProjections(): Promise<Book[]> {
+        return this.bookRepo.find({
+            select: {
+                id: true,
+                isbn: true,
+                author: {
+                    id: true,
+                    name: true
+                }
+            }, 
+            relations:{
+                author:true
+            }
+        })
+    }
+
 
     findById(id: number): Promise<Book | null> {
         //SELECT *FROM books WHERE id=1
