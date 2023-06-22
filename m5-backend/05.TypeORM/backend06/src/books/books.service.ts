@@ -16,6 +16,10 @@ export class BooksService {
         return this.bookRepo.find();
     }
 
+    findAllWithRelations(): Promise<Book[]> {
+        return this.bookRepo.find({ relations: { author: true } })
+    }
+
     findById(id: number): Promise<Book | null> {
         //SELECT *FROM books WHERE id=1
         return this.bookRepo.findOne({
@@ -127,5 +131,5 @@ export class BooksService {
         }
     }
 
-    
+
 }

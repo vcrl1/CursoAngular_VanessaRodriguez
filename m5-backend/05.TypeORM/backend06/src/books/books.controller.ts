@@ -9,7 +9,9 @@ export class BooksController {
 
     @Get()
     findAll(): Promise<Book[]> {
-        return this.bookService.findAll();
+        // return this.bookService.findAll(); //Solo trae los datos del libro
+        return this.bookService.findAllWithRelations(); //Trae tb los datos del autor
+
     }
 
     @Get('id/:id')
