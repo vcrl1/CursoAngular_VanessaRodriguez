@@ -20,3 +20,16 @@ npx nest generate module authors
 npx nest generate controller authors
 npx nest generate service authors
 Crear authors.model.ts o authors.entity.ts
+
+Módulo Address:
+* Modelo Address
+
+Módulo Users:
+* Modelo User y Rol
+
+Módulo Orders:
+* Modelos: Order y OrderTime
+
+Asociaciones: 
+* Many to one: Book-Author
+* One to one: Author-Address

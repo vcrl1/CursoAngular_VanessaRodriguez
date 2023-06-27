@@ -1,5 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
-
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Location } from "src/locations/locations.model";
 
 @Entity()
 export class Author {
@@ -7,23 +7,24 @@ export class Author {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({length:50})
+    @Column({length: 50})
     name: string;
 
-    @Column({length:50})
+    @Column({length: 50})
     email: string;
 
-    
-    @Column({type:'text'})
+    @Column({type: 'text'})
     bio: string;
 
-    @CreateDateColumn({ name: 'created_date' }) 
+    @CreateDateColumn({name: 'created_date'})
     createdDate: Date;
 
-    @CreateDateColumn({ name: 'update_date' }) // lo de name:... para darle el formato de BBDD
-    updateDate: Date;
+    @UpdateDateColumn({name: 'updated_date'})
+    updatedDate: Date;
 
-  
-
+    // eager true carga de forma temprana la asociación, implica que location se carga en las consultas select de autor
+    @OneToOne(() => Location, { cascade: true, eager: true }) // cuidado eager puede afectar al rendimiento
+    @JoinColumn({name: 'id_location'}) // obligatorio
+    location: Location;
 
 }

@@ -1,5 +1,7 @@
 import { Author } from "src/authors/authors.model";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Category } from "src/categories/categories.model";
+import { Editorial } from "src/editorials/editorials.model";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
@@ -11,13 +13,13 @@ export class Book {
     @Column()
     title: string;
 
-    @Column({ unique: true })
-    isbn: number;
+    @Column({ unique: true, length: 13 })
+    isbn: string;
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
     price: number;
 
-    @CreateDateColumn({ name: 'created_date' }) // lo de name:... para darle el formato de BBDD
+    @CreateDateColumn({ name: 'created_date' })
     createdDate: Date;
 
     @Column({ type: 'int' })
@@ -26,9 +28,15 @@ export class Book {
     @Column({ type: 'boolean', default: false })
     published: boolean;
 
-    //Varios libros asociados a un autor. 
-    @ManyToOne(()=>Author)
-    @JoinColumn({name:'id_author'})
+    @ManyToOne(() => Author)
+    @JoinColumn({ name: 'id_author' })
     author: Author;
 
+    @ManyToOne(() => Editorial)
+    @JoinColumn({ name: 'id_editorial' })
+    editorial: Editorial;
+
+    @ManyToMany(() => Category)
+    @JoinTable()
+    categories: Category[]
 }

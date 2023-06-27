@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Author } from 'src/authors/authors.model';
 import { Book } from 'src/books/books.model';
+import { Category } from 'src/categories/categories.model';
+import { Editorial } from 'src/editorials/editorials.model';
 
 @Module({
     imports: [
@@ -15,7 +17,7 @@ import { Book } from 'src/books/books.model';
             database: 'backend_nest',
             entities: [
                 // __dirname + 'src/**/*.model.ts'
-                Book, Author
+                Book, Author, Editorial, Location, Category
             ],
             synchronize: true,// generar tablas automáticamente en base a entidades
             logging: true //para generar las consultas y nos aparezcan
