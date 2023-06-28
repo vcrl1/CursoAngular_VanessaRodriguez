@@ -1,0 +1,40 @@
+table {
+    margin-top: 0 !important;
+}
+
+a {
+    display: block;
+    color: dodgerblue;
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+a:hover {
+    opacity: 0.7;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+mat-chip-listbox{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    color: rgb(34, 44, 41);
+    background-color: bisque;
+}
+
+h2{
+   text-align: center;
+}
+
+.list-header-img{
+    border-radius: 50%;
+    max-width: 100px;
+}
+.list-header{
+    text-align: center;
+}
