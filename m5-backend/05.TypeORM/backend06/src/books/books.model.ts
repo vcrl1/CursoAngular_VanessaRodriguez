@@ -36,7 +36,11 @@ export class Book {
     @JoinColumn({ name: 'id_editorial' })
     editorial: Editorial;
 
-    @ManyToMany(() => Category)
-    @JoinTable()
+    @ManyToMany(() => Category, { cascade: true })
+    @JoinTable({
+        name: 'book_category',
+        joinColumn: { name: 'id_book' },
+        inverseJoinColumn: { name: 'id_category' }
+    })
     categories: Category[]
 }

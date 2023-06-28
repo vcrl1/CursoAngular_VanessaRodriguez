@@ -1,5 +1,3 @@
-import { Author } from "src/authors/authors.model";
-import { Editorial } from "src/editorials/editorials.model";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
