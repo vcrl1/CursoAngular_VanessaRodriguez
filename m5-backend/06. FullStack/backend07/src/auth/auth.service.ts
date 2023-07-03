@@ -1,17 +1,16 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
+import { LoginDTO } from './DTO/login.dto';
+import { TokenDTO } from './DTO/token.dto';
 
-export interface LoginDTO {
-    email: string,
-    password: string;
-}
+
 @Injectable()
 export class AuthService {
     constructor(private userService: UsersService,
         private jwtService: JwtService) { }
 
-    async login(login: LoginDTO) {
+    async login(login: LoginDTO): Promise<TokenDTO> {
         let user = await this.userService.findByEmail(login.email)  //Se crea este métood en user service. 
         if (!user) throw new UnauthorizedException('Credenciales incorrectas') //usuario incorrecto
         if (user.password !== login.password) throw new UnauthorizedException('Credenciales incorrectas') //comprobación contraseña
@@ -21,8 +20,11 @@ export class AuthService {
             sub: user.id
         }
 
-        let token = await this.jwtService.signAsync(payload) //objeto respuesta que me estoy inventando para luego llamarlo. 
-        return { token: token }
+        let token: TokenDTO = {
+            token: await this.jwtService.signAsync(payload) //objeto respuesta que me estoy inventando para luego llamarlo. 
 
+        }
+        return token
     }
+
 }
