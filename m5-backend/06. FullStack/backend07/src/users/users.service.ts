@@ -29,4 +29,10 @@ export class UsersService {
         }
     }
 
+    findByEmail(email:string):Promise<User>|null{
+        return this.userRepo.findOne({
+            where:{email:email}
+        })
+    }
+
 }
