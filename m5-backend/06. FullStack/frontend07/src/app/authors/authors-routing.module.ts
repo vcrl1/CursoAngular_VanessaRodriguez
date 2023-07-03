@@ -6,8 +6,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: AuthorDetailComponent
-  },
-
+  }
 ];
 
 @NgModule({

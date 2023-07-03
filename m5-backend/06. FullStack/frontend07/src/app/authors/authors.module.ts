@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { AuthorsRoutingModule } from './authors-routing.module';
 import { AuthorDetailComponent } from './author-detail/author-detail.component';
-import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatTableModule } from '@angular/material/table';
+import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,11 +17,11 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     AuthorsRoutingModule,
-    MatListModule,
     MatGridListModule,
-    MatTableModule,
+    MatListModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ]
 })
 export class AuthorsModule { }

@@ -5,12 +5,12 @@ import { Booking } from './bookings.model';
 @Controller('bookings')
 export class BookingsController {
 
-    constructor(private bookingService: BookingsService) { }
+    constructor(private bookingService: BookingsService) {}
 
     @Get('user/:userId')
     findAllByUserId(
-        @Param("userId", ParseIntPipe) userId: number
-    ): Promise<Booking[]> {
+        @Param("userId", ParseIntPipe) 
+        userId: number): Promise<Booking[]> {
         return this.bookingService.findAllByUserId(userId);
     }
 
@@ -18,6 +18,5 @@ export class BookingsController {
     async create(@Body() booking: Booking): Promise<Booking> {
         return await this.bookingService.create(booking);
     }
-
 
 }

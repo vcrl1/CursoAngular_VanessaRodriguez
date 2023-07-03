@@ -6,9 +6,11 @@ import { Book } from './books.model';
 import { CategoriesModule } from 'src/categories/categories.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Book]),  // Tabla Book
-    CategoriesModule],
+  imports: [
+    TypeOrmModule.forFeature([Book]),
+    CategoriesModule
+  ], 
   controllers: [BooksController],
   providers: [BooksService]
 })
-export class BooksModule { }
+export class BooksModule {}

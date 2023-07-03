@@ -5,7 +5,7 @@ import { Book } from './books.model';
 @Controller('books')
 export class BooksController {
 
-    constructor(private bookService: BooksService) { }
+    constructor(private bookService: BooksService) {}
 
     @Get()
     findAll(): Promise<Book[]> {
@@ -25,7 +25,7 @@ export class BooksController {
     @Get('author/:authorId')
     findAllByAuthorId(
         @Param("authorId", ParseIntPipe) authorId: number
-    ): Promise<Book[]> {
+        ): Promise<Book[]> {
         return this.bookService.findAllByAuthorId(authorId);
     }
 
@@ -37,7 +37,7 @@ export class BooksController {
     @Get('title-eq/:title') // http://localhost:3000/books/title-eq/book1
     findAllByTitleEquals(@Param("title") title: string): Promise<Book[]> {
         return this.bookService.findAllByTitleEquals(title);
-    }
+    } 
 
     @Get('title-like/:title') // http://localhost:3000/books/title-like/libro
     findAllByTitleLike(@Param('title') title: string): Promise<Book[]> {
@@ -46,7 +46,7 @@ export class BooksController {
 
     @Get('price/min/:min/max/:max')
     findAllByPriceBetween(
-        @Param('min') min: number,
+        @Param('min') min: number, 
         @Param('max') max: number): Promise<Book[]> {
         return this.bookService.findAllByPriceBetween(min, max);
     }
@@ -61,10 +61,10 @@ export class BooksController {
         @Param('quantity') quantity: number,
         @Param('price') price: number): Promise<Book[]> {
 
-        return this.bookService
+            return this.bookService
             .findAllByQuantityAndPrice(quantity, price);
     }
-
+    
     @Get('ordered-by-price-asc')
     findAllOrderByPriceAsc(): Promise<Book[]> {
         return this.bookService.findAllOrderByPriceAsc();
@@ -92,7 +92,7 @@ export class BooksController {
     async create(@Body() book: Book): Promise<Book> {
         return await this.bookService.create(book);
     }
-
+    
 
     /*
     Solo actualiza un libro existente, no se debe crear uno nuevo:
@@ -127,14 +127,13 @@ export class BooksController {
         return await this.bookService.deleteById(id);
     }
 
-
+    
     @Delete('author-id/:authorId')
     async deleteAllByAuthorId(
         @Param('authorId', ParseIntPipe) authorId: number
     ): Promise<void> {
         return await this.bookService.deleteAllByAuthorId(authorId);
     }
-
 
 
 }

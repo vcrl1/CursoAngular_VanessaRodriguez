@@ -24,8 +24,8 @@ export class BookFormComponent implements OnInit {
       Validators.required, Validators.min(5), Validators.max(500), Validators.pattern("^[0-9]+([.,][0-9]{1,2})?$")
     ]),
     release: new FormControl<Date>(new Date()),
-    authorId: new FormControl<number>(0, [Validators.required]),
-    categories: new FormControl<number[]>([])
+    author: new FormControl<any>(null, [Validators.required]),
+    categories: new FormControl<any[]>([])
   });
 
   authors: IAuthor[] = [];
@@ -62,7 +62,7 @@ export class BookFormComponent implements OnInit {
       numPages: book.numPages,
       price: book.price,
       release: book.release,
-      authorId: book.authorId,
+      author: book.author,
       categories: book.categories
     });
   }
@@ -75,19 +75,22 @@ export class BookFormComponent implements OnInit {
     let price = this.bookForm.get('price')?.value ?? 5;
     let release = this.bookForm.get('release')?.value ?? new Date();
     let photo = "http://dummyimage.com/217x100.png/cc0000/ffffff";
-    let authorId = this.bookForm.get('authorId')?.value ?? 0;
+    let author = this.bookForm.get('author')?.value ?? undefined;
     let categories = this.bookForm.get('categories')?.value ?? [];
 
     // TODO añadir validación extra de datos, si alguno está mal hacer return y mostrar error y no guardar.
     let book: IBook = {
       id: id,
       title: title,
+      isbn:'',
+      quantity: 0,
+      published:true,
       sinopsis: sinopsis,
       release: release,
       numPages: numPages,
       photo: photo,
       price: price,
-      authorId: authorId,
+      author: author,
       categories: categories
     }
 

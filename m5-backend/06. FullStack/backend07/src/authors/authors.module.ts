@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AuthorsController } from './authors.controller';
 import { AuthorsService } from './authors.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Author } from './authors.model';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Author])], //Tabla Author 
+  imports: [TypeOrmModule.forFeature([Author])], // Tabla Book
   controllers: [AuthorsController],
   providers: [AuthorsService]
 })
-export class AuthorsModule { }
+export class AuthorsModule {}

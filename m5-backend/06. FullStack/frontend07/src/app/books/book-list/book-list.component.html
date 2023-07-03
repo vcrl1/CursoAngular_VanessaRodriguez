@@ -1,41 +1,43 @@
+
 <h2>Listado de libros</h2>
 
 <button mat-raised-button color="primary" routerLink="/books/new">
   <mat-icon>add</mat-icon>
-  Crear libro
+Crear libro
 </button>
 
 <div *ngIf="author" class="list-header">
-  <h2>Autor {{author.fullName}}</h2>
-  <img [src]="author.photo" [alt]="author.photo" class="list-header-img">
+  <img class="list-header-img" [src]="author.photo" [alt]="author.name">
+  <h2>Autor {{author.name}}</h2>
 </div>
 
 <div *ngIf="category" class="list-header">
+  <img class="list-header-img" [src]="category.photo" [alt]="category.name">
   <h2>Categoría {{category.name}}</h2>
-  <img [src]="category.photo" [alt]="category.photo"  class="list-header-img">
 </div>
 
-<div *ngIf="books.length>0">
-  Hay {{books.length}} libros en total
-</div>
+<div class="table-count" *ngIf="books.length > 0">
+  Hay {{books.length}} libros en total.
+  </div>
+
 <mat-accordion>
+
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
         Filtrar por categoría
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <mat-chip-listbox>
-      <a *ngFor="let category of categories" [routerLink]="['/books/category/', category.id]">
-
-        <mat-chip-option [ngStyle]="{'background-color':category.color}">
-          <img matChipAvatar [src]="category.photo" [alt]="category.name" />
-          {{category.name}}
-        </mat-chip-option>
-      </a>
-    </mat-chip-listbox>
+      <mat-chip-listbox>
+        <a *ngFor="let category of categories" [routerLink]="['/books/category', category.id]">
+          <!-- <mat-chip-option [ngStyle]="{'background-color': category.color}"> -->
+          <mat-chip-option>
+            <img matChipAvatar [src]="category.photo" [alt]="category.name"/>
+            {{category.name}}
+          </mat-chip-option>
+        </a>
+      </mat-chip-listbox>
   </mat-expansion-panel>
-
 
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -43,25 +45,18 @@
         Filtrar por autor
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <mat-chip-listbox aria-label="Dog selection">
+    <mat-chip-listbox>
 
       <a *ngFor="let author of authors" [routerLink]="['/books/author', author.id]">
-    
         <mat-chip-option color="primary">
-          <img matChipAvatar [src]="author.photo" [alt]="author.fullName" />
-          {{author.fullName}}
+          <img matChipAvatar [src]="author.photo" [alt]="author.name"/>
+          {{author.name}}
         </mat-chip-option>
-    
       </a>
-    
+
     </mat-chip-listbox>
-    
   </mat-expansion-panel>
 </mat-accordion>
-
-
-
-
 
 
 <table mat-table [dataSource]="books" class="mat-elevation-z8">
@@ -117,6 +112,6 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
 </table>
-<div *ngIf="books.length===0" style="text-align: center; min-height: 200px;">
-  No se han encontrado libros
+<div *ngIf="books.length === 0" style="text-align: center; min-height: 100px;">
+  No se han encontrado libros.
 </div>

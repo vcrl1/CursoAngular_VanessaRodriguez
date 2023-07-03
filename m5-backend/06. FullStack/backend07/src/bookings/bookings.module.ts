@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Booking } from './bookings.model';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Booking])], //Tabla booking 
+  imports: [TypeOrmModule.forFeature([Booking])],
   controllers: [BookingsController],
   providers: [BookingsService]
 })

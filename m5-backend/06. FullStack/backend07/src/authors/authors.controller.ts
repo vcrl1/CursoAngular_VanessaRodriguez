@@ -14,7 +14,7 @@ export class AuthorsController {
 
     /*
     Si cascade:true entonces el objeto location se crea automaticamente al crear el autor
-            {
+        {
         "id": 0,
         "name": "otro auto5",
         "email": "a5@email.com",

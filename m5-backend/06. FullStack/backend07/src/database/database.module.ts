@@ -5,9 +5,8 @@ import { Booking } from 'src/bookings/bookings.model';
 import { Book } from 'src/books/books.model';
 import { Category } from 'src/categories/categories.model';
 import { Editorial } from 'src/editorials/editorials.model';
-import { Location } from 'src/locations/locations.model';  //Hay que importar el modelo que hemos creado 
+import { Location } from "src/locations/locations.model";
 import { User } from 'src/users/users.model';
-//Location tb es una palabra reservada de algo. 
 
 @Module({
     imports: [
@@ -23,12 +22,12 @@ import { User } from 'src/users/users.model';
                 // __dirname + 'src/**/*.model.ts'
                 Book, Author, Editorial, Location, Category, User, Booking
             ],
-            synchronize: true,// generar tablas automáticamente en base a entidades
-            logging: true //para generar las consultas y nos aparezcan
+            synchronize: true, // generar tablas automáticamente en base a entidades
+            logging: true
         })
     ]
 })
-export class DatabaseModule { }
+export class DatabaseModule {}
 
 // CREAR VARIABLE DE ENTORNO EN MAC
 // Símbolo virgulilla en MAX: “option+Ñ”

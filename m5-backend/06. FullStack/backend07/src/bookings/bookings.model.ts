@@ -7,23 +7,22 @@ export class Booking {
 
     @PrimaryGeneratedColumn()
     id: number;
-    //Cuando añadimos una entidad, es una asociación.
+
     @ManyToOne(() => User)
-    @JoinColumn({ name: 'id_user' })
+    @JoinColumn({name: 'id_user'})
     user: User;
 
     @ManyToOne(() => Book)
-    @JoinColumn({ name: 'id_book' })
+    @JoinColumn({name: 'id_book'})
     book: Book;
 
-    @Column({ name: 'start_date' })
+    @Column({default: 5})
+    price: number;
+
+    @Column()
     startDate: Date;
 
-    @Column({ name: 'finish_date' })
+    @Column()
     finishDate: Date;
-
-    //@Colum()
-    //alergies: string 
-
 
 }

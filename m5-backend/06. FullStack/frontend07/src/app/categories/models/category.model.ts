@@ -1,7 +1,9 @@
 export interface ICategory {
-    id:number;
-    name: string;
-    minAge:number;
-    color: string;
-    photo: string;
+  id: number;
+  name: string;
+  description: string
+  color: string;
+  photo: string;
+  minAge: number;
+
 }

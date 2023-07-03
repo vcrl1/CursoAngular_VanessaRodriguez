@@ -1,27 +1,31 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-// no creamos un doc nuevo, es una enumeración para marcar los roles de los usuarios. 
 export enum UserRole {
     USER = 'user',
     ADMIN = 'admin'
 }
-
 @Entity()
 export class User {
 
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ unique: true })
-    userName: string;
+    @Column({unique: true})
+    username: string;
 
-    @Column({ unique: true })
+    @Column({unique: true})
     email: string;
-
+    
     @Column()
     password: string;
 
-    @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
-    role: UserRole
+    @Column({
+        type: 'enum',
+        enum: UserRole,
+        default: UserRole.USER
+    })
+    role: UserRole;
+
+
 
 }

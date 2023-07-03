@@ -13,34 +13,46 @@ export class Book {
     @Column()
     title: string;
 
-    @Column({ unique: true, length: 13 })
+    @Column({unique: true, length: 13})
     isbn: string;
 
-    @Column({ type: 'decimal', precision: 10, scale: 2 })
+    @Column({type: 'decimal', precision: 10, scale: 2})
     price: number;
 
-    @CreateDateColumn({ name: 'created_date' })
+    @CreateDateColumn({name: 'created_date'})
     createdDate: Date;
 
-    @Column({ type: 'int' })
+    @Column({type: 'int'})
     quantity: number;
 
-    @Column({ type: 'boolean', default: false })
+    @Column({type: 'boolean', default: false})
     published: boolean;
 
+    @Column({type: 'text'})
+    sinopsis: string;
+
+    @Column()
+    release: Date;
+
+    @Column({name: 'num_pages'})
+    numPages: number;
+
+    @Column()
+    photo: string;
+
     @ManyToOne(() => Author)
-    @JoinColumn({ name: 'id_author' })
+    @JoinColumn({ name: 'id_author'})
     author: Author;
 
     @ManyToOne(() => Editorial)
-    @JoinColumn({ name: 'id_editorial' })
+    @JoinColumn({ name: 'id_editorial'})
     editorial: Editorial;
 
-    @ManyToMany(() => Category, { cascade: true })
+    @ManyToMany(() => Category, {cascade: true})
     @JoinTable({
-        name: 'book_category',
-        joinColumn: { name: 'id_book' },
-        inverseJoinColumn: { name: 'id_category' }
+        name: 'book_category', 
+        joinColumn: {name: 'id_book'},
+        inverseJoinColumn: {name: 'id_category'}
     })
-    categories: Category[]
+    categories: Category[];
 }

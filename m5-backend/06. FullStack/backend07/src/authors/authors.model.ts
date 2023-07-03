@@ -16,6 +16,12 @@ export class Author {
     @Column({type: 'text'})
     bio: string;
 
+    @Column()
+    birthday: Date;
+
+    @Column()
+    photo: string;
+
     @CreateDateColumn({name: 'created_date'})
     createdDate: Date;
 

@@ -11,7 +11,7 @@ export class BooksService {
     constructor(
         @InjectRepository(Book) private bookRepo: Repository<Book>,
         private categoryService: CategoriesService
-    ) { }
+    ){}
 
     findAll(): Promise<Book[]> {
         // SELECT * FROM books;
@@ -64,11 +64,11 @@ export class BooksService {
     findById(id: number): Promise<Book | null> {
         // SELECT * FROM books WHERE id = 1;
         console.log(id);
-        return this.bookRepo.findOne({
+        return this.bookRepo.findOne({ 
             where: {
                 id: id
-            }
-        });
+            },
+         });
     }
 
     findAllByTitleEquals(title: string): Promise<Book[]> {
@@ -93,7 +93,7 @@ export class BooksService {
         console.log(minPrice);
         console.log(maxPrice);
 
-        return this.bookRepo.find({
+        return this.bookRepo.find({ 
             where: {
                 price: Between(minPrice, maxPrice)
             }
@@ -108,14 +108,14 @@ export class BooksService {
         });
     }
 
-    findAllByQuantityAndPrice(quantity: number,
-        price: number): Promise<Book[]> {
-        return this.bookRepo.find({
-            where: {
-                quantity: MoreThanOrEqual(quantity),
-                price: MoreThanOrEqual(price)
-            }
-        });
+    findAllByQuantityAndPrice(quantity: number, 
+                              price: number): Promise<Book[]> {
+            return this.bookRepo.find({
+                where: {
+                    quantity: MoreThanOrEqual(quantity),
+                    price: MoreThanOrEqual(price)
+                }
+            });
     }
 
     // findAllOrderByPriceAsc
@@ -138,15 +138,16 @@ export class BooksService {
 
 
     async update(book: Book): Promise<Book> {
-        let bookFromDB = await this.bookRepo.findOne({
+        let bookFromDB = await this.bookRepo.findOne({ 
             where: {
                 id: book.id
             }
-        });
+         });
 
-        if (!bookFromDB) throw new NotFoundException('Libro no encontrado');
+         if(!bookFromDB) throw new NotFoundException('Libro no encontrado');
 
-        try {
+         try {
+            console.log(book);
             bookFromDB.price = book.price;
             bookFromDB.published = book.published;
             bookFromDB.quantity = book.quantity;
@@ -154,19 +155,20 @@ export class BooksService {
             bookFromDB.author = book.author;
             bookFromDB.editorial = book.editorial;
 
-            //OPCIÓN 1:
+            
+            // Opción 1: buscar las categorías
             // let categoryIds = book.categories.map(cat => cat.id);
             // let categories = await this.categoryService.findAllByIds(categoryIds);
             // bookFromDB.categories = categories;
-            // await this.bookRepo.update(bookFromDB.id, bookFromDB);
 
-            //OPCIÓN 2: 
+            // Opción 2: cargar las categorías directamente
             bookFromDB.categories = book.categories;
             return await this.bookRepo.save(bookFromDB);
 
-        } catch (error) {
+         } catch (error) {
+            console.log(error);
             throw new ConflictException('Error actualizando el libro');
-        }
+         }
     }
 
 
@@ -178,7 +180,7 @@ export class BooksService {
             }
         });
 
-        if (!exist) throw new NotFoundException('Not found');
+        if(!exist) throw new NotFoundException('Not found');
 
         try {
             await this.bookRepo.delete(id);
