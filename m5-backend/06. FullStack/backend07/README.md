@@ -55,3 +55,33 @@ Asociaciones:
 * ManyToMany Book - Category
 * ManyToOne Reserva - User
 * ManyToOne Reserva - Book
+
+
+# Autenticación
+
+npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcrypt
+
+nest generate module auth
+
+nest generate service auth
+
+nest generate controller auth
+
+1. AuthService
+    * register
+    * login: si todo ok se firma con una clave secreta
+    * validateUserFromPayload
+
+2. AuthModule:
+    * ajustar imports: UsersModule, PassportModule, JwtModule
+    * ajustar providers: AuthService, JwtStrategy
+
+3. JwtStrategy extends PassportStrategy
+    * utiliza la clave secreta para comprobar el token
+
+4. JwtAuthGuard extends AuthGuard
+
+5. @JwtAuthGuard en los métodos de los controladores
+    * Explorar activar seguridad global
+
+6. DTOs: Data Transfer Objects 
