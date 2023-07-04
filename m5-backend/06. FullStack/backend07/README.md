@@ -67,6 +67,7 @@ nest generate service auth
 
 nest generate controller auth
 
+## Login (genera token): 
 1. AuthService
     * register
     * login: si todo ok se firma con una clave secreta
@@ -75,13 +76,47 @@ nest generate controller auth
 2. AuthModule:
     * ajustar imports: UsersModule, PassportModule, JwtModule
     * ajustar providers: AuthService, JwtStrategy
+3. AuthController:
+    * login que recibe un LoginDTO por @Body() por @Post
 
-3. JwtStrategy extends PassportStrategy
+4. Abrir Workbench y añadir un usuario en la tabla user si no lo hay.
+
+5. Abrir postman y enviar por POST a http://localhost:3000/auth/login
+
+{
+    "email": "user1@gmail.com",
+    "password": "1234"
+}
+
+Ejemplo de respuesta que tiene que devolver: 
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIxQGdtYWlsLmNvbSIsInN1YiI6MSwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODg0NTczNzYsImV4cCI6MTY4OTA2MjE3Nn0.OulRne6T5V0cQTQhVKqrVEYjnY-ArgMnSSc71bvYp44"
+}
+
+Añadir el token en jwt.io y ver que descodifica la información que tiene dentro.
+
+## Verificar tokens en las sucesivas peticiones
+
+
+
+1. Crear archivo jwt.strategy.ts en el módulo auth
+2. Crear dentro la clase JwtStrategy
+3. Añadir la clase JwtStrategy en providers del módulo auth
+
+
+
+1. Copiar el token
+
+2. Enviar el token desde Postman en una petición a un controlador cualquiera:
+
+Authorization > Bearer Token > Pegar el token
+
+
+## Comprobar tokens:
+1. JwtStrategy extends PassportStrategy
     * utiliza la clave secreta para comprobar el token
-
-4. JwtAuthGuard extends AuthGuard
-
-5. @JwtAuthGuard en los métodos de los controladores
+2. JwtAuthGuard extends AuthGuard
+3. @JwtAuthGuard en los métodos de los controladores
     * Explorar activar seguridad global
-
 6. DTOs: Data Transfer Objects 

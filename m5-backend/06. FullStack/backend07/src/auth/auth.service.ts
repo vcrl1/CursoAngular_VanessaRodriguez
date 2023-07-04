@@ -17,7 +17,8 @@ export class AuthService {
 
         let payload = { //contenido que se va a mostrar.
             email: user.email,
-            sub: user.id
+            sub: user.id,
+            role: user.role
         }
 
         let token: TokenDTO = {
