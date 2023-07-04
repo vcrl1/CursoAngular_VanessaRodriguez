@@ -101,17 +101,33 @@ Añadir el token en jwt.io y ver que descodifica la información que tiene dentr
 
 
 1. Crear archivo jwt.strategy.ts en el módulo auth
+
 2. Crear dentro la clase JwtStrategy
+    * extends PassportStrategy(Strategy) 
+    * constructor con llamada a super()
+    * método validate(payload)
+
 3. Añadir la clase JwtStrategy en providers del módulo auth
 
+4. AuthController crear métodos:
+    * hola1 sin seguridad
+    * hola2 con seguridad: @UseGuards(AuthGuard('jwt'))
+    * getProfile que extrae el user de la @Request
+    * A partir de ahora podemos extraer el user de la @Request
 
 
-1. Copiar el token
-
-2. Enviar el token desde Postman en una petición a un controlador cualquiera:
+Desde Postman:
+5. Enviar el token desde Postman en una petición a un controlador cualquiera como por ejemplo auth/hello2:
 
 Authorization > Bearer Token > Pegar el token
 
+Comprobar:
+
+* auth/hola1 es público y no tiene seguridad, no necesita token
+
+* auth/hola2 es seguro y necesita token
+
+* auth/profile es seguro y necesita token, devuelve el usuario, sin la contraseña.
 
 ## Comprobar tokens:
 1. JwtStrategy extends PassportStrategy

@@ -7,7 +7,6 @@ import { UsersService } from "src/users/users.service";
 export class JwtStrategy extends PassportStrategy(Strategy) {
 
     constructor(private userService: UsersService) {
-        console.log("Jwt strategy en acción!");
 
         super({
             // extrae el token de la header Authorization y verifica si es correcto
@@ -18,15 +17,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     }
 
     async validate(payload: any) {
-        console.log("Validate JWTStrategy");
-        console.log(payload);
 
         let user = await this.userService.findById(payload.sub);
 
-        if(!user) 
+        if (!user)
             throw new UnauthorizedException('Autenticación incorrecta'); // 401
 
-        return user;
+        // quitar la password por seguridad
+        let { password, ...userInfo } = user;
+        return userInfo;
     }
 
 }
