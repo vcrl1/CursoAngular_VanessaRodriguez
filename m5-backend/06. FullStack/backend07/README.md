@@ -129,7 +129,14 @@ Comprobar:
 
 * auth/profile es seguro y necesita token, devuelve el usuario, sin la contraseña.
 
-## Comprobar tokens:
+## Registro
+
+## Cifrado contraseña
+
+## Angular
+
+
+Comprobar tokens:
 1. JwtStrategy extends PassportStrategy
     * utiliza la clave secreta para comprobar el token
 2. JwtAuthGuard extends AuthGuard

@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import { LoginDTO } from './DTO/login.dto';
 import { TokenDTO } from './DTO/token.dto';
+import { User } from 'src/users/users.model';
 
 
 @Injectable()
@@ -26,6 +27,18 @@ export class AuthService {
 
         }
         return token
+    }
+    
+    async register(user: User): Promise<TokenDTO> {
+
+        await this.userService.create(user);
+
+        // Opcional: realizar login en el propio registro
+        let loginDTO: LoginDTO = {
+            email: user.email,
+            password: user.password
+        }
+        return await this.login(loginDTO);
     }
 
 }

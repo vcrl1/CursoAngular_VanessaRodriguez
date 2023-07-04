@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { LoginDTO } from './DTO/login.dto';
 import { TokenDTO } from './DTO/token.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { User } from 'src/users/users.model';
 
 @Controller('auth')
 export class AuthController {
@@ -14,6 +15,12 @@ export class AuthController {
         return this.authService.login(login)
 
     }
+
+    @Post('register')
+    async register(@Body() user: User): Promise<TokenDTO> {
+        return this.authService.register(user);
+    }
+
     @Get('hola1')
     hola1() {
         console.log('hola1');
