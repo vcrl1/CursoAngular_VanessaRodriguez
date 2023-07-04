@@ -26,3 +26,18 @@ ng generate interface categories/models/category --type=model --prefix=I
 ng generate service categories/services/category
 
 ng generate component authors/author-detail
+
+## Autenticación
+
+Módulo auth:
+* ng generate module auth --routing --module app.module
+* ng generate service auth/auth
+* ng generate component auth/login
+* ng generate component auth/register
+* Crear JwtInterceptor
+
+Módulo users:
+* ng generate module users --routing --module app.module
+* ng generate interface users/user --type=model --prefix=I
+* ng generate service users/user
+* ng generate component users/profile

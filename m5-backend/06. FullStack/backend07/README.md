@@ -170,9 +170,7 @@ process.env.NEST_JWT_SECRET
 
 
 ## Variable de entorno para la clave secreta
-
-
-## Angular
+Agregar la variable de entorno NEST_JWT_SECRET.
 
 
 Comprobar tokens:
