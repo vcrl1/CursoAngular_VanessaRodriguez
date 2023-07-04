@@ -131,7 +131,46 @@ Comprobar:
 
 ## Registro
 
+* AuthController
+    * register que recibe un User
+
+* AuthService
+    * register que crea el usuario y llama a login para devolver el token
+    * Suele ser habitual agregar pasos extra en el registro como:
+        * Enviar un SMS
+        * Enviar un Email
+        * Validar IP
+        * Validar user agent
+
+* UserService
+    * create que guarda un usuario en base de datos, lanza excepción si los datos ya 
+    están ocupados.
+
+
 ## Cifrado contraseña
+
+bcrypt: https://github.com/kelektiv/node.bcrypt.js#readme
+
+1. En el registro hay que cifrar la contraseña antes de guardarla en base datos
+
+2. En el login hay que comprobar la contraseña cifrada
+
+
+## Generar clave secreta segura
+
+En el archivo secret-gen.js a nivel proyecto tenemos el código que genera claves.
+
+Ejemplo:
+
+8fed7b16f3e25645764e872dd64097052f4d4c6787e3d2aa0e760a51e606571a
+
+Añadir la clave como variable de entorno y utilizarla en el backend.
+
+process.env.NEST_JWT_SECRET
+
+
+## Variable de entorno para la clave secreta
+
 
 ## Angular
 
