@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,15 +16,22 @@ export class LoginComponent {
 
   })
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router:Router) { }
 
   save() {
 
     let login = {
-    email: this.userForm.get('email')?.value ?? '',
-    password : this.userForm.get('password')?.value ?? ''
+      email: this.userForm.get('email')?.value ?? '',
+      password: this.userForm.get('password')?.value ?? ''
     }
 
-    this.authService.login(login).subscribe(data=>console.log(data.token))
+    this.authService.login(login).subscribe(data => {
+      console.log(data.token)
+      //Guardar token para utilizarlo en las posteriores peticiones
+      localStorage.setItem('jwt_token', data.token)
+
+      //Una vez hecho el login navegas a los libros. 
+      this.router.navigate(['/books'])
+    })
   }
 }
