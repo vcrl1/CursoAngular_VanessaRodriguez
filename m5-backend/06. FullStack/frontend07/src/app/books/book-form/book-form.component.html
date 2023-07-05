@@ -51,7 +51,7 @@
       <mat-select formControlName="authorId" name="authorId">
         <mat-option>Ninguna</mat-option>
         <mat-option *ngFor="let author of authors" [value]="author.id">
-          {{author.fullName}}
+          {{author.name}}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="bookForm.get('authorId')?.invalid && bookForm.get('authorId')?.touched">

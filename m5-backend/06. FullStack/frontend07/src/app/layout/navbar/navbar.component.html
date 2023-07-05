@@ -14,11 +14,14 @@
       <button mat-menu-item>Galería libros</button>
     </mat-menu>
 
-    <button mat-button [matMenuTriggerFor]="menuAuthors">Autores</button>
+    <button mat-button [matMenuTriggerFor]="menuAuthors">Cuenta</button>
     <mat-menu #menuAuthors="matMenu">
-      <button mat-menu-item>Tabla autores</button>
-      <button mat-menu-item>Galería autores</button>
+      <button mat-menu-item>Registrarse</button>
+      <button mat-menu-item routerLink="/auth/login">Iniciar sesión</button>
     </mat-menu>
+
+    <button mat-button routerLink="/auth/login">Iniciar sesión</button>
+
 
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon>favorite</mat-icon>
