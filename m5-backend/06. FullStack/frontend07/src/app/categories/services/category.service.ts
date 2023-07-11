@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICategory } from '../models/category.model';
+import { BASE_URL } from 'src/app/shared/constants'
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  url: string = "http://localhost:3000/categories";
-
+  url: string = `${BASE_URL}/categories`;
   constructor(private httpClient: HttpClient) { }
 
   findAll(): Observable<ICategory[]> {

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
+import { BASE_URL, TOKEN } from '../shared/constants';
 
 export interface Token {
   sub: number; // id del usuario
@@ -18,8 +19,7 @@ export interface Token {
 export class AuthService {
 
 
-  url: string = "http://localhost:3000/auth";
-
+  url: string = `${BASE_URL}/auth`;
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -32,16 +32,16 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('jwt_token'); //Cerrar sesión
+    localStorage.removeItem(TOKEN);
     this.router.navigate(['/auth/login']) //Después te redirige 
   }
 
   isLoggedIn(){
-  return localStorage.getItem('jwt_token')!==null
+    return localStorage.getItem(TOKEN) !== null;
   }
 
   isAdmin() {
-    let token = localStorage.getItem('jwt_token') ?? '';
+    let token = localStorage.getItem(TOKEN) ?? '';
 
     try {
 

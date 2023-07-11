@@ -88,7 +88,25 @@ Cosas que solo puede ver el administrador:
 * En el listado libros el botón Crear libro
 
 
+Optimización:
+
+Utilizar Subject y subscription para suscribirse a la comprobación de si el usuario está logado y es administrador.
+
+De esa forma evitaríamos que Angular haga un exceso de comprobaciones de isLoggedIn o isAdmin.
+
+Plantear tenerlo en otra rama.
+
 ## Convertir el identificador jwt_token en una constante 
+
+Crear archivos de constantes.
+
+En Angular:
+
+* shared/constants.ts
+
+En Nest:
+
+* shared/constants.ts
 
 ## Proteger rutas
 

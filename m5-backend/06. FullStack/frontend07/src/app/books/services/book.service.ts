@@ -2,14 +2,14 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IBook } from '../models/book.model';
+import { BASE_URL } from 'src/app/shared/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
-  url: string = "http://localhost:3000/books";
-
+  url: string = `${BASE_URL}/books`;
   constructor(private httpClient: HttpClient) { }
 
   findAll(): Observable<IBook[]> {
