@@ -8,6 +8,10 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'register',
+    component: LoginComponent
+  },
+  {
     path: '**', redirectTo: 'login', pathMatch: 'full'
   }
 ];
