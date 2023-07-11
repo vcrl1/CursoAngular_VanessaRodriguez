@@ -34,7 +34,10 @@ export class BookingsService {
         });
 
     }
-
+    
+    findAll(): Promise<Booking[]> {
+        return this.bookingRepo.find();
+    }
 
 
 }

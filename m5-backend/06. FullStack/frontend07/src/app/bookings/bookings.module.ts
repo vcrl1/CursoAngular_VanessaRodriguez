@@ -12,6 +12,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatNativeDateModule,
     MatButtonModule,
+    MatTableModule,
+    MatIconModule
 
   ],
   providers: [

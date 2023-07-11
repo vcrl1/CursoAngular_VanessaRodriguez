@@ -2,17 +2,20 @@ import { Body, Controller, Request, UseGuards, Delete, Get, Param, ParseIntPipe,
 import { BookingsService } from './bookings.service';
 import { Booking } from './bookings.model';
 import { AuthGuard } from '@nestjs/passport';
+import { UserRole } from 'src/users/user-role.enum';
 
 @Controller('bookings')
 export class BookingsController {
 
     constructor(private bookingService: BookingsService) { }
     @UseGuards(AuthGuard('jwt'))
-    @Get('user/:userId')
-    findAllByUserId(
-        @Param("userId", ParseIntPipe)
-        userId: number): Promise<Booking[]> {
-        return this.bookingService.findAllByUserId(userId);
+    @Get()
+    findAll(@Request() request): Promise<Booking[]> {
+
+        if(request.user.role === UserRole.ADMIN)
+            return this.bookingService.findAll();
+
+        return this.bookingService.findAllByUserId(request.user.id);
     }
     @UseGuards(AuthGuard('jwt'))
     @Post()

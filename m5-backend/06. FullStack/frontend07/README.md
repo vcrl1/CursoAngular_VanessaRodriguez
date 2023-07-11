@@ -192,7 +192,22 @@ Backend:
 * Enviar datos a BookingController
 * Extraer usuario de la request y asociarlo a la reserva
 
+Frontend:
 
+bookings-list.component.ts en ngOnInit llama a BookingsService.findAll() y carga bookings
+
+bookings-list.component.html forEach y mostrar bookings
+
+
+Backend:
+
+En BookingsController:
+
+Extraer user de req.user y si es admin:
+  * llamar a BookingsService.findAll()
+
+Si no es admin:
+* Extaer req.user.id y llamar a BookingsService.findAllByUserId(id)
 
 ## Formulario reservas
 
