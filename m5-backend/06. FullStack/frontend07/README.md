@@ -161,9 +161,7 @@ ng generate service bookings/booking
 
 ## Formulario reservas
 
-1. BookingFormComponent
 
- Bookings:
 * id
 * user?
 * book?
@@ -171,6 +169,10 @@ ng generate service bookings/booking
 * startDate
 * finishDate
 
+
+## Formulario reservas
+
+1. BookingFormComponent
 
 ## Mis reservas (user)
 
