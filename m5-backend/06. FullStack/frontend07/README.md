@@ -1,4 +1,10 @@
 # Frontend con Angular
+
+
+https://www.typescriptlang.org/docs/handbook
+
+https://www.typescriptlang.org/docs/handbook/utility-types.html
+
 ng generate component layout/navbar
 ng generate component layout/footer
 ng generate module books --routing --module app.module
@@ -165,6 +171,7 @@ ng generate service bookings/booking
 * price
 * startDate
 * finishDate
+
 ## Formulario reservas
 
 
@@ -178,7 +185,7 @@ en módulo reservas.
 3. booking-form.component.ts agregar FormGroup con FormControl por cada campo
 
 4. booking-form.component.html agregar campos de formulario
-
+5. book-detail.component.html routerLink en el botón de compra hacia el formulario de booking-form.component.ts
 
 Backend:
 
@@ -202,3 +209,6 @@ Backend:
 ## Subida de imágenes 
 
 ## Conectar con otros backend desde nuestro backend con httpclient
+## Ocultar botones si no se está autenticado
+
+Ocultar botones o hacer redirección a login

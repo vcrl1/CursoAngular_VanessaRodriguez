@@ -38,10 +38,11 @@
         <mat-icon>shopping_cart</mat-icon>
         Comprar
       </button> -->
-      <button mat-raised-button color="primary" style="width: 100%;">
-        <mat-icon>shopping_cart</mat-icon>
-      Comprar
-      </button>
+      <!-- /bookings/1/new -->
+      <button mat-raised-button color="primary"
+      style="width: 100%;" [routerLink]="['/bookings', book.id, 'new']">        <mat-icon>shopping_cart</mat-icon>
+      Reservar libro €
+          </button>
     </div>
   </mat-grid-tile>
 
