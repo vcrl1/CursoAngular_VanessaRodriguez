@@ -142,6 +142,42 @@ Ejemplos de lo que se podría guardar en constantes:
 * Números fijos o constantes utilizados fórmulas para hacer cálculos
 
 
+## Módulos reservas
+
+1. Generar módulo y componentes:
+
+ng generate module bookings --routing --module app.module
+ng generate component bookings/booking-list
+ng generate component bookings/booking-form
+ng generate interface bookings/booking --type=model --prefix=I
+ng generate service bookings/booking
+
+2. Crear routes para reservas
+* app-routing.module.ts /bookings BookingsModule
+* bookings-routing.module.ts
+  * '' BookingListComponent
+  * '/:bookId/new' BookingFormComponent
+  * '/:id/edit' BookingFormComponent
+
+## Formulario reservas
+
+1. BookingFormComponent
+
+ Bookings:
+* id
+* user?
+* book?
+* price
+* startDate
+* finishDate
+
+
+## Mis reservas (user)
+
+## Todas las reservas (admin)
+
+
+
 ## Proteger rutas
 
 ## Subida de imágenes 
