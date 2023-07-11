@@ -28,6 +28,9 @@ export class BookListComponent implements OnInit {
   categories: ICategory[] = [];
   author: IAuthor | undefined;
   category: ICategory | undefined;
+  isLoggedIn = false;
+  isAdmin = false;
+
   constructor(
     private bookService: BookService,
     private authorService: AuthorService,
@@ -39,6 +42,13 @@ export class BookListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadBooks();
+    this.authService.isLoggedIn.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn;
+    });
+
+    this.authService.isAdmin.subscribe(admin => {
+      this.isAdmin = admin;
+    });
   }
   loadBooks() {
     this.activatedRoute.params.subscribe((params) => {

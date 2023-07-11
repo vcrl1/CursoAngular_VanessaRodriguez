@@ -90,11 +90,37 @@ Cosas que solo puede ver el administrador:
 
 Optimización:
 
-Utilizar Subject y subscription para suscribirse a la comprobación de si el usuario está logado y es administrador.
-
+Utilizar Subject/BehaviourSubject y subscription para suscribirse a la comprobación de si el usuario está logado y es administrador.
 De esa forma evitaríamos que Angular haga un exceso de comprobaciones de isLoggedIn o isAdmin.
 
-Plantear tenerlo en otra rama.
+https://rxjs.dev/guide/subject
+
+1. AuthService:
+  * Atributo isAdmin
+  * Atributo isLoggedIn
+
+  * logout cambiar isAdmin y isLoggedIn a false
+
+  * hasToken comprueba si hay token si o no
+
+  * handleLoginResponse guarda el token, comprueba el rol, marca isLoggedIn a true para indicar que el usuario está autenticado.
+
+
+2. navbar.component.ts y book-list.component.ts
+  * implements NgOnit
+  * Añadir authService en constructor
+  * subscribe de isAdmin
+  * subscribe de isLoggedIn
+
+
+3. navbar.component.html
+
+  * ngIf="isAdmin"
+  * ngIf="isLoggedIn"
+
+4. login.component.ts y register.component.ts
+* Llamar a handleLoginResponse
+
 
 ## Convertir el identificador jwt_token en una constante 
 
@@ -107,6 +133,14 @@ En Angular:
 En Nest:
 
 * shared/constants.ts
+
+Ejemplos de lo que se podría guardar en constantes:
+
+* URL del backend
+* Mensajes de error genéricos
+* Palabras que se repitan más de 3-5 veces
+* Números fijos o constantes utilizados fórmulas para hacer cálculos
+
 
 ## Proteger rutas
 
