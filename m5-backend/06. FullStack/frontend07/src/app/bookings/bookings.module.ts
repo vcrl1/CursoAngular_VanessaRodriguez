@@ -4,7 +4,14 @@ import { CommonModule } from '@angular/common';
 import { BookingsRoutingModule } from './bookings-routing.module';
 import { BookingListComponent } from './booking-list/booking-list.component';
 import { BookingFormComponent } from './booking-form/booking-form.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -13,7 +20,19 @@ import { BookingFormComponent } from './booking-form/booking-form.component';
   ],
   imports: [
     CommonModule,
-    BookingsRoutingModule
-  ]
+    BookingsRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatButtonModule,
+
+  ],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+  ],
 })
 export class BookingsModule { }

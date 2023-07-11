@@ -158,16 +158,33 @@ ng generate service bookings/booking
   * '' BookingListComponent
   * '/:bookId/new' BookingFormComponent
   * '/:id/edit' BookingFormComponent
-
-## Formulario reservas
-
-
+3. Modelo booking.model.ts:
 * id
-* user?
-* book?
+* user?: IUser
+* book?: IBook
 * price
 * startDate
 * finishDate
+## Formulario reservas
+
+
+Frontend
+
+1. Importar módulos de angular material
+en módulo reservas.
+
+2. booking.service.ts agregar métodos CRUD.
+
+3. booking-form.component.ts agregar FormGroup con FormControl por cada campo
+
+4. booking-form.component.html agregar campos de formulario
+
+
+Backend:
+
+* Enviar datos a BookingController
+* Extraer usuario de la request y asociarlo a la reserva
+
 
 
 ## Formulario reservas

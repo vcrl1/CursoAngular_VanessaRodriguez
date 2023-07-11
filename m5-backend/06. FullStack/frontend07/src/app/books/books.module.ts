@@ -30,7 +30,8 @@ import { MatExpansionModule }from '@angular/material/expansion';
         BookFormComponent
     ],
     imports: [
-        CommonModule, BooksRoutingModule, HttpClientModule,
+        CommonModule, BooksRoutingModule,
+        HttpClientModule,
         MatTableModule,
         MatIconModule,
         MatButtonModule,
