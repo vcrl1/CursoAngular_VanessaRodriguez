@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoryService } from 'src/app/categories/services/category.service';
 import { ICategory } from 'src/app/categories/models/category.model';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-book-list',
@@ -32,37 +33,32 @@ export class BookListComponent implements OnInit {
     private authorService: AuthorService,
     private categoryService: CategoryService,
     private activatedRoute: ActivatedRoute,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.loadBooks();
   }
-
   loadBooks() {
     this.activatedRoute.params.subscribe((params) => {
       const authorIdStr = params['authorId'];
       const categoryIdStr = params['categoryId'];
-
       if (authorIdStr) { // Filtro por autores
         const id = parseInt(authorIdStr, 10);
         this.bookService.findAllByAuthorId(id).subscribe(data => this.books = data);
         this.authorService.findById(id).subscribe(data => this.author = data);
-
       } else if (categoryIdStr) { // Filtro por category
         const id = parseInt(categoryIdStr, 10);
         this.bookService.findAllByCategoryId(id).subscribe(data => this.books = data);
         this.categoryService.findById(id).subscribe(data => this.category = data);
-
       } else { // Sin filtro
         this.bookService.findAll().subscribe(data => this.books = data);
       }
-
     });
     this.authorService.findAll().subscribe(data => this.authors = data);
     this.categoryService.findAll().subscribe(data => this.categories = data);
   }
-
   deleteBook(book: IBook) {
     this.bookService.deleteById(book.id).subscribe({
       next: response => {

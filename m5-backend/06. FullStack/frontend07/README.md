@@ -81,6 +81,13 @@ En AuthService crear métodos para comprobar roles, para lo cual deben descodifi
 isAdmin()
 isCompany()
 
+Cosas que solo puede ver el administrador:
+
+* En la barra de navegación puede haber un menú libros con un botón Crear libro
+* En la barra de navegación menú usuarios
+* En el listado libros el botón Crear libro
+
+
 ## Convertir el identificador jwt_token en una constante 
 
 ## Proteger rutas
