@@ -22,7 +22,7 @@ export class AuthService {
   url: string = `${BASE_URL}/auth`;
     // BehaviorSubject emite valores a suscriptores, es un Observable especializado
   // que siempre emite el último valor a sus observadores
-  isAdmin = new BehaviorSubject<boolean>(false);
+  isAdmin = new BehaviorSubject<boolean>(this.hasAdminToken());
   isLoggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
 
@@ -45,7 +45,14 @@ export class AuthService {
     this.isLoggedIn.next(false);
   }
 
-  hasToken() {
+  hasAdminToken(): boolean {
+    let token = localStorage.getItem(TOKEN);
+    if (!token) return false;
+
+    let decoded_token: Token = jwt_decode(token);
+    return decoded_token.role === 'admin';
+  }
+  hasToken() : boolean {
     console.log('checking hasToken()')
     return localStorage.getItem(TOKEN) !== null;
   }
