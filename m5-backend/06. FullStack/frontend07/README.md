@@ -198,13 +198,29 @@ bookings-list.component.ts en ngOnInit llama a BookingsService.findAll() y carga
 
 bookings-list.component.html forEach y mostrar bookings
 
+# Perfil usuario: 
+* ng generate module users --routing --module app.module
+* ng generate interface users/user --type=model --prefix=I
+* ng generate service users/user
+* ng generate component users/profile
+* ng generate component users/user-list
+
+1. En app-routing.module.ts agregar ruta al módulo UsersModule
+2. En users-routing.module.ts agregar ruta a lcomponentes
+3. Agregar dependencias (imports) en users-module.ts
+4. Crear métodos en UserService
+5. profile.component.ts
+6. profile.component.html
+
 
 Backend:
+1. Recibir user en controlador
+2. Guardar user en base de datos
 
 En BookingsController:
 
 Extraer user de req.user y si es admin:
-  * llamar a BookingsService.findAll()
+* llamar a BookingsService.findAll()
 
 Si no es admin:
 * Extaer req.user.id y llamar a BookingsService.findAllByUserId(id)
