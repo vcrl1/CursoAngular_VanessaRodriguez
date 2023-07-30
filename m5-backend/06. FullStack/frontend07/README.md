@@ -209,8 +209,9 @@ bookings-list.component.html forEach y mostrar bookings
 2. En users-routing.module.ts agregar ruta a lcomponentes
 3. Agregar dependencias (imports) en users-module.ts
 4. Crear métodos en UserService
-5. profile.component.ts
-6. profile.component.html
+5. Copletar user.model.ts
+6. profile.component.ts
+7. profile.component.html
 
 
 Backend:

@@ -47,15 +47,6 @@ class TareaDatabase {
         return tarea;
     }
 
-    #generateNextId() {
-        let maxId = 0;
-        for (const currentTarea of this.tareas) {
-            if (currentTarea.id > maxId)
-                maxId = currentTarea.id;
-        }
-        return ++maxId;
-    }
-
     /* Primero calcula cuál es el id (int) más alto de todos los ids pertenecientes*/
     #generateNextId2() {
 
@@ -85,8 +76,8 @@ class TareaDatabase {
         return this.tareas.filter(tarea => tarea.status === status);
     }
 
-    filterByTitle(title) {
-        return this.tareas.filter(tarea => tarea.title.includes(title));
+    filterByImportance(importance) {
+        return this.tareas.filter(tarea => tarea.importance.includes(importance));
     }
 
 
@@ -103,18 +94,6 @@ class TareaDatabase {
         return tarea;
     }
 
-    update2(tarea) {
-
-        let tareaIndex = this.tareas.findIndex(
-            currentTarea => currentTarea.id === tarea.id
-        );
-        if (tareaIndex === -1)
-            return undefined;
-
-        let updatedAct = { ...this.tareas[tareaIndex], ...tarea };
-
-        this.tareas[tareaIndex] = updatedAct;
-    }
 
     deleteById(id) {
 
@@ -143,21 +122,21 @@ let tareaDatabase = new TareaDatabase();
 
 // ======================================= CREAR OBJETOS ACTIVITY ==============================
 
-let reunionTrabajo = new Tarea(undefined, "Reunión JavaScript", "tratar caso práctico", "En progreso", "Media", new Date("2023-04-18"));
-let running = new Tarea(
+let reunionTrabajo = new Tarea(undefined, "Reunión proyecto", "Tareas CRUD", "En progreso", "Alta", new Date("2023-04-18"));
+let sport = new Tarea(
     undefined,
-    "Entrenamiento cardiovascular",
-    "Correr 5 KM",
+    "Entrenamiento fuerza",
+    "25kg sentadilla",
     "Pendiente",
     "Normal",
     new Date("2023-04-15")
 );
-let gym = new Activity(
+let study = new Activity(
     undefined,
-    "Entrenamiento musculación",
-    "Press banca",
+    "Casos practicos",
+    "JavaScript",
     "Pendiente",
-    "Normal",
+    "Alta",
     new Date("2023-04-14")
 );
 
@@ -167,11 +146,11 @@ let gym = new Activity(
 reunionTrabajo = tareaDatabase.addTarea(reunionTrabajo); // id 1
 console.log(reunionTrabajo.id);
 
-running = tareaDatabase.addTarea(running); // id 2
-console.log(running.id);
+sport = tareaDatabase.addTarea(sport); // id 2
+console.log(sport.id);
 
-gym = tareaDatabase.addTarea(gym); // id 3
-console.log(gym.id);
+study = tareaDatabase.addTarea(study); // id 3
+console.log(study.id);
 
 
 
@@ -190,10 +169,10 @@ console.log(tareaDatabase.filterByStatus("No existe"));
 
 
 
-// ======================================= BUSCAR POR TITULO: filterByTitle ==============================
+// ======================================= BUSCAR POR TITULO: filterByImportance ==============================
 
-console.log(tareaDatabase.filterByTitle("Entrenamiento"));
-console.log(tareaDatabase.filterByTitle("No existe"));
+console.log(tareaDatabase.filterByImportance("Media"));
+console.log(tareaDatabase.filterByImportance("No existe"));
 
 
 

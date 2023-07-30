@@ -1,0 +1,31 @@
+<p>tareas-lista works!</p>
+
+<h2>Listado de libros</h2>
+
+
+<div *ngIf="tarea" >
+  <h2>Tarea {{tarea.title}}</h2>
+</div>
+
+<table>
+
+    <th >Acciones</th>
+    <td >
+
+      <button [routerLink]="['/tareas', tarea.id]">
+        Ver
+      </button>
+
+      <button [routerLink]="['/tareas', tarea.id, 'edit']">
+        Editar
+      </button>
+
+      <button (click)="delete(tarea)">
+        Borrar
+      </button>
+
+    </td>
+
+
+</table>
+

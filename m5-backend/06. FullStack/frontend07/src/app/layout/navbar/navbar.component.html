@@ -8,13 +8,14 @@
     </a>
     <span class="example-spacer"></span>
 
-    <button mat-button [matMenuTriggerFor]="menuBookings" *ngIf="isLoggedIn">      
+    <button mat-button [matMenuTriggerFor]="menuBookings" *ngIf="isLoggedIn">
       <mat-icon>shopping_cart</mat-icon>
       Reservas
     </button>
     <mat-menu #menuBookings="matMenu">
-      <button mat-menu-item routerLink="/books" *ngIf="isAdmin">Todas las reservas</button>
-      <button mat-menu-item routerLink="/books/new" *ngIf="isLoggedIn">Mis reservas</button>
+      <button mat-menu-item routerLink="/bookings">Reservas</button>
+    </mat-menu>
+
     <button mat-button [matMenuTriggerFor]="menuBooks">
       <mat-icon>menu_book</mat-icon>
       Libros
@@ -23,29 +24,35 @@
       <button mat-menu-item routerLink="/books">Listado libros</button>
       <button mat-menu-item routerLink="/books/new" *ngIf="isAdmin">Crear nuevo libro</button>
     </mat-menu>
+
     <button mat-button [matMenuTriggerFor]="menuAuthors">
       <mat-icon>person_book</mat-icon>
       Autores
     </button>
     <mat-menu #menuAuthors="matMenu">
-
       <button mat-menu-item routerLink="/authors">Listado autores</button>
-    <button mat-menu-item routerLink="/authors/new" *ngIf="isAdmin">Crear nuevo autor</button>
+      <button mat-menu-item routerLink="/authors/new" *ngIf="isAdmin">Crear nuevo autor</button>
     </mat-menu>
 
+
     <button mat-button *ngIf="!isLoggedIn" routerLink="/auth/login">
-    <mat-icon>login</mat-icon>
+      <mat-icon>login</mat-icon>
       Iniciar sesión
     </button>
 
 
     <button mat-button *ngIf="!isLoggedIn" routerLink="/auth/register">
-    <mat-icon>person_add</mat-icon>
+      <mat-icon>person_add</mat-icon>
       Crear cuenta
     </button>
 
+    <button mat-button *ngIf="!isLoggedIn" routerLink="/users/profile">
+      <mat-icon>account_circle</mat-icon>
+      Mi perfil
+    </button>
+
     <button mat-button *ngIf="isLoggedIn" (click)="authService.logout()">
-    <mat-icon>logout</mat-icon>
+      <mat-icon>logout</mat-icon>
       Cerrar sesión
     </button>
 
